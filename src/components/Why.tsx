@@ -10,7 +10,8 @@ const ArrowDown = () => <RemixIcon iconName="arrow-down-s-line" />;
 
 export default function Why() {
   return (
-    <section>
+    <section id="index-section-why">
+      <h2>Why</h2>
       <Accordion defaultExpanded={true}>
         <AccordionSummary id="why-start" expandIcon={<ArrowDown />}>
           <Typography>왜 개발 공부를 시작하게 되었나요?</Typography>
@@ -49,15 +50,17 @@ export default function Why() {
           <Typography>왜 결국 프로그래밍을 선택했나요?</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          프로그래밍은 예술과 닮았다고 생각합니다. 프로그래밍을 예술적으로 할
-          생각은 없습니다. 닮은 점은 언어를 이용해 창작을 한다는 점입니다.
-          하지만 그림과 글은 같은 창작이여도 좀처럼 서비스 대상과 직접 마주하기
-          힘듭니다. 전 그래서 항상 소통에 대한 갈망이 있었습니다. 소통 그리고
-          누군가에게 실질적인 결과를 가져다 주고 싶었습니다. 프로그래밍, 그 중
-          특히나 프론트 엔드는 서비스를 이용하는 유저와 백엔드 프로그래머
-          사이에서 완충제 역할을 한다고 생각합니다. UX로 유저에게 직접적인
-          결과물을 안기는 한편 백엔드 프로그래머와 디자이너와의 소통도 빼놓을 수
-          없는 이 분야가 저는 궁금합니다.
+          <Typography>
+            프로그래밍은 예술과 닮았다고 생각합니다. 프로그래밍을 예술적으로 할
+            생각은 없습니다. 닮은 점은 언어를 이용해 창작을 한다는 점입니다.
+            하지만 그림과 글은 같은 창작이여도 좀처럼 서비스 대상과 직접
+            마주하기 힘듭니다. 전 그래서 항상 소통에 대한 갈망이 있었습니다.
+            소통 그리고 누군가에게 실질적인 결과를 가져다 주고 싶었습니다.
+            프로그래밍, 그 중 특히나 프론트 엔드는 서비스를 이용하는 유저와
+            백엔드 프로그래머 사이에서 완충제 역할을 한다고 생각합니다. UX로
+            유저에게 직접적인 결과물을 안기는 한편 백엔드 프로그래머와
+            디자이너와의 소통도 빼놓을 수 없는 이 분야가 저는 궁금합니다.
+          </Typography>
         </AccordionDetails>
       </Accordion>
     </section>
