@@ -1,87 +1,41 @@
+import styled from "@emotion/styled";
 import React from "react";
+import { HashLink } from "react-router-hash-link";
 
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-
-function BasicTabs() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
-  return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-    </Box>
-  );
-}
+// todo: 깃허브와 블로그 추가하기
+// todo: 헤더 인터렉티브 추가, 스크롤 다운시 숨기고 스크롤 업-> 다시 보이게 끔
+const StyledHeader = styled.header`
+  background-color: palevioletred;
+  display: flex;
+  justify-content: space-between;
+  height: 2rem;
+`;
+const StyledNav = styled.nav`
+  & a {
+    margin-right: 10px;
+  }
+`;
 
 export default function Header() {
+  const sections = ["about", "character", "why", "experienced", "contact"];
   return (
-    <header style={{ display: "flex", justifyContent: "space-between" }}>
-      <BasicTabs />
-      <address>
-        <a href="">github</a>
+    <StyledHeader>
+      <StyledNav id="menu-bar">
+        {sections.map((section, idx) => (
+          <HashLink to={`/#index-section-${section}`} key={idx}>
+            {section}
+          </HashLink>
+        ))}
+      </StyledNav>
+      <address style={{ display: "flex" }}>
+        <span>github</span>
         {" | "}
-        <a href="">vlog</a>
+        <span>vlog</span>
         {" | "}
-        <a href="">email</a>
+        <span>email</span>
       </address>
-    </header>
+    </StyledHeader>
   );
 }
+
+// {/* <HashLink to={"/#hi"}>하이루로 가기</HashLink>; */}
