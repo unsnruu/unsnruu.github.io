@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.76d3b2ae.css",
-    "main.js": "/static/js/main.6baf2286.js",
+    "main.js": "/static/js/main.1fcffc62.js",
     "static/js/787.16b8e3d0.chunk.js": "/static/js/787.16b8e3d0.chunk.js",
     "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.9cedd2150922ead84869.svg",
     "static/media/remixicon.eot?t=1590207869815": "/static/media/remixicon.5cb99e6cba5a4619063f.eot",
@@ -17,11 +17,11 @@
     "static/media/logo-react.svg": "/static/media/logo-react.e27e9c08a57c0eb6b4fea3269cde5223.svg",
     "static/media/logo-vue.svg": "/static/media/logo-vue.321af036281d1da6ad026f738e559e93.svg",
     "main.76d3b2ae.css.map": "/static/css/main.76d3b2ae.css.map",
-    "main.6baf2286.js.map": "/static/js/main.6baf2286.js.map",
+    "main.1fcffc62.js.map": "/static/js/main.1fcffc62.js.map",
     "787.16b8e3d0.chunk.js.map": "/static/js/787.16b8e3d0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.76d3b2ae.css",
-    "static/js/main.6baf2286.js"
+    "static/js/main.1fcffc62.js"
   ]
 }
