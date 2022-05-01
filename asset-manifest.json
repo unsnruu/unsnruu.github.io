@@ -1,27 +1,28 @@
 {
   "files": {
     "main.css": "/static/css/main.76d3b2ae.css",
-    "main.js": "/static/js/main.1fcffc62.js",
+    "main.js": "/static/js/main.c218518c.js",
     "static/js/787.16b8e3d0.chunk.js": "/static/js/787.16b8e3d0.chunk.js",
     "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.9cedd2150922ead84869.svg",
     "static/media/remixicon.eot?t=1590207869815": "/static/media/remixicon.5cb99e6cba5a4619063f.eot",
     "static/media/remixicon.ttf?t=1590207869815": "/static/media/remixicon.f2616f597cf98f38d234.ttf",
     "static/media/remixicon.woff?t=1590207869815": "/static/media/remixicon.8d09fa11700ed63cf96e.woff",
     "static/media/remixicon.woff2?t=1590207869815": "/static/media/remixicon.90668f6f9b3c2c18a090.woff2",
-    "static/media/logo-recoil.svg": "/static/media/logo-recoil.ebb791f47d631a617cb8f21884169d07.svg",
-    "static/media/logo-js.svg": "/static/media/logo-js.7219ccca40a7fb66f490e9ccd41ff889.svg",
-    "static/media/logo-redux.svg": "/static/media/logo-redux.a24f765b20333be29f5ba60714562112.svg",
+    "static/media/my-logo.png": "/static/media/my-logo.6fc791326a6310550432.png",
+    "static/media/recoil-logo.svg": "/static/media/recoil-logo.0ea0be1aae3cbffeb38139d4bb7125e7.svg",
+    "static/media/react-logo.svg": "/static/media/react-logo.2c2be448d109ca1e69fec98a3cb4f6bd.svg",
+    "static/media/javascript-logo.svg": "/static/media/javascript-logo.e04ac623cda3056fb51a181f0b2e9b68.svg",
+    "static/media/redux-logo.svg": "/static/media/redux-logo.63d86e964fd260ce82cb6ab868d331e4.svg",
+    "static/media/CSS-logo.svg": "/static/media/CSS-logo.579a1114066723bd2ca16ae628250017.svg",
+    "static/media/HTML-logo.svg": "/static/media/HTML-logo.b0f53343b90fc40f73235d7d0ab84350.svg",
     "index.html": "/index.html",
-    "static/media/logo-html5.svg": "/static/media/logo-html5.de3bf754ae5262b492129c3b6fa8f8ad.svg",
-    "static/media/logo-css3.svg": "/static/media/logo-css3.993a9f8e1731445e8ea824fc860d9466.svg",
-    "static/media/logo-react.svg": "/static/media/logo-react.e27e9c08a57c0eb6b4fea3269cde5223.svg",
-    "static/media/logo-vue.svg": "/static/media/logo-vue.321af036281d1da6ad026f738e559e93.svg",
+    "static/media/vue-logo.svg": "/static/media/vue-logo.0193f66357d88dc9e90b12c022faa515.svg",
     "main.76d3b2ae.css.map": "/static/css/main.76d3b2ae.css.map",
-    "main.1fcffc62.js.map": "/static/js/main.1fcffc62.js.map",
+    "main.c218518c.js.map": "/static/js/main.c218518c.js.map",
     "787.16b8e3d0.chunk.js.map": "/static/js/787.16b8e3d0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.76d3b2ae.css",
-    "static/js/main.1fcffc62.js"
+    "static/js/main.c218518c.js"
   ]
 }
