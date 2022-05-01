@@ -2,12 +2,14 @@ import React, { ReactElement, useState, useEffect, useRef } from "react";
 import Slide from "@mui/material/Slide";
 import styled from "@emotion/styled";
 
-const Wrapper = styled.div`
-  width: 300px;
-  height: 500px;
+const EmojiWrapper = styled.div`
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-export default function SimpleSlide({ children }: { children: ReactElement }) {
+export default function SimpleSlide({ emoji }: { emoji?: string }) {
   const [checked, setChecked] = useState(false);
   // const [node, setNode] = useState<Element>(null);
   const ref = useRef<HTMLDivElement>(null);
@@ -31,10 +33,10 @@ export default function SimpleSlide({ children }: { children: ReactElement }) {
   }, []);
 
   return (
-    <Wrapper ref={ref}>
+    <div ref={ref} className="">
       <Slide in={checked} direction={"right"}>
-        <div>{children}</div>
+        <EmojiWrapper>{emoji}</EmojiWrapper>
       </Slide>
-    </Wrapper>
+    </div>
   );
 }
