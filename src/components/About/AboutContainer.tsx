@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react";
 
 import Introduction from "./Introduction";
-import ProfileList from "./ProfileList";
+import ResumeList from "./ResumeList";
 import { Box, Divider } from "@mui/material";
 import styled from "@emotion/styled";
 
@@ -14,7 +14,7 @@ export default function AboutContainer() {
     <StyledBox>
       <Introduction />
       <Divider />
-      <ProfileList />
+      <ResumeList />
     </StyledBox>
   );
 }

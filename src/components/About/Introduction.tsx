@@ -5,7 +5,6 @@ import { useTheme } from "@mui/material/styles";
 import styled from "@emotion/styled";
 
 const StyledGrid = styled(Grid)`
-  width: 100vw;
   height: 25.875rem;
 `;
 
@@ -14,7 +13,12 @@ export default function Introduction() {
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <StyledGrid container justifyContent={"center"} alignItems={"center"}>
+    <StyledGrid
+      container
+      justifyContent={"center"}
+      alignItems={"center"}
+      id={"section-about"}
+    >
       <Grid item xs={2}></Grid>
       <Grid item xs={8} container justifyContent={"center"} spacing={4}>
         <Grid item>

@@ -1,6 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import SimpleSlide from "./SimpleSlide";
 
@@ -11,11 +19,13 @@ export interface CharacterCardProps {
 }
 
 const StyledCard = styled(Card)`
-  background-color: gray;
+  background-color: white;
   display: flex;
   align-items: center;
   margin: 0.5rem;
-  height: 11rem;
+`;
+const StyledCardHeader = styled(CardHeader)`
+  word-break: keep-all;
 `;
 
 export default function CharacterCard({
@@ -23,20 +33,23 @@ export default function CharacterCard({
   title,
   emoji,
 }: CharacterCardProps) {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
-    <StyledCard>
+    <StyledCard elevation={4} sx={{ height: `${matches ? "13rem" : "auto"}` }}>
       <CardContent>
         <SimpleSlide emoji={emoji} />
       </CardContent>
-      <div>
-        <CardHeader
+      <CardContent>
+        <StyledCardHeader
           title={title}
           titleTypographyProps={{ fontSize: "1.25rem" }}
         />
         <CardContent>
           <Typography>{text}</Typography>
         </CardContent>
-      </div>
+      </CardContent>
     </StyledCard>
   );
 }

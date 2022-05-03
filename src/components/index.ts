@@ -1,5 +1,5 @@
 import About from "./About";
-import Contact from "./Contact";
+import Finish from "./Finish";
 import Experienced from "./Experienced";
 import Header from "./Header";
 import Project from "./Project";
@@ -10,7 +10,7 @@ import Promising from "./Promising";
 
 export {
   About,
-  Contact,
+  Finish,
   Experienced,
   Header,
   Project,
