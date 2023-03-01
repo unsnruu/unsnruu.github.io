@@ -2,7 +2,7 @@ import Component from "@/types/component";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 import { createStyleProps } from "@/utils/createStyleProps";
 
-const styleProps = createStyleProps({
+export const styleProps = createStyleProps({
   container: {
     margin: "0px",
     padding: "0px",
