@@ -1,5 +1,7 @@
 import { StyleProp } from "@/types/styleProp";
 
-export const createStyleProps = <T>(styleProps: {
+type StyleProps<T> = {
   [K in keyof T]: StyleProp;
-}) => styleProps;
+};
+
+export const createStyleProps = <T>(styleProps: StyleProps<T>) => styleProps;
