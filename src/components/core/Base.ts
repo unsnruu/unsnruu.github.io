@@ -14,7 +14,7 @@ export const styleProps = createStyleProps({
   },
 });
 
-export default class Base extends Component {
+class Base extends Component {
   constructor() {
     super();
   }
@@ -44,3 +44,5 @@ export default class Base extends Component {
     return style;
   }
 }
+
+export default { name: "core-base", component: Base };
