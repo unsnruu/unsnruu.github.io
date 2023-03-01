@@ -16,7 +16,7 @@ export default class Flexbox extends Base {
     super();
   }
   static get observedAttributes(): StyleKeys[] {
-    return [];
+    return ["flexWrap", "justifyContent", "alignContent", "flexDirection"];
   }
   getTemplate(): HTMLElement {
     const template = document.createElement("template");
