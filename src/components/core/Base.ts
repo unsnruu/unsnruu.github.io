@@ -1,4 +1,4 @@
-import Component, { StyleKeys, StyleProps } from "@/types/component";
+import Component, { StyleProps } from "@/types/component";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 
 export const baseStyleProps: StyleProps = {
@@ -16,15 +16,8 @@ export default class Base extends Component {
     super();
   }
 
-  static get observedAttributes(): StyleKeys[] {
-    return [
-      "margin",
-      "padding",
-      "boxShadow",
-      "width",
-      "height",
-      "backgroundColor",
-    ];
+  static get observedAttributes(): string[] {
+    return Object.keys(baseStyleProps);
   }
 
   getTemplate(): HTMLElement {
@@ -33,7 +26,7 @@ export default class Base extends Component {
       <div id="container">
         <slot name="children"></slot>
       <div/>
-    `;
+    `.trim();
     return template.content.cloneNode(true) as HTMLElement;
   }
 
