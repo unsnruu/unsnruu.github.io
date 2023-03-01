@@ -1,12 +1,3 @@
-import * as CSS from "csstype";
-
-export type StyleProp = {
-  [key in keyof CSS.Properties]: CSS.Properties<string, string>[key];
-};
-export type StyleProps = {
-  [key: string]: StyleProp;
-};
-
 export default class Component extends HTMLElement {
   shadowRoot: ShadowRoot;
 
