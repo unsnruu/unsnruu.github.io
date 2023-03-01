@@ -1,19 +1,23 @@
 import * as CSS from "csstype";
-export type StyleProps = {
+
+export type StyleProp = {
   [key in keyof CSS.Properties]: CSS.Properties<string, string>[key];
 };
-export type StyleKeys = keyof StyleProps;
+export type StyleProps = {
+  [key: string]: StyleProp;
+};
 
 export default class Component extends HTMLElement {
   shadowRoot: ShadowRoot;
 
-  static get observedAttributes(): StyleKeys[] {
-    return [];
-  }
   constructor() {
     super();
     this.shadowRoot = this.attachShadow({ mode: "open" });
   }
+  static get observedAttributes(): string[] {
+    return [];
+  }
+
   connectedCallback() {
     window.requestAnimationFrame(() => {
       this.render();
@@ -31,12 +35,10 @@ export default class Component extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = "";
     this.shadowRoot.appendChild(this.getStyle());
-    this.shadowRoot.appendChild(this.getTemplate());
+    this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));
   }
-  getTemplate(): HTMLElement {
-    return document
-      .createElement("template")
-      .content.cloneNode(true) as HTMLElement;
+  getTemplate(): HTMLTemplateElement {
+    return document.createElement("template");
   }
   getStyle(): HTMLStyleElement {
     return document.createElement("style");
