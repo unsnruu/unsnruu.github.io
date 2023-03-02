@@ -11,6 +11,9 @@ export const styleProps = createStyleProps({
     alignContent: "center",
     flexDirection: "row",
   },
+  slotted: {
+    flex: "1",
+  },
 });
 
 export default class Flexbox extends Base {
@@ -29,8 +32,11 @@ export default class Flexbox extends Base {
   }
   getStyle(): string {
     return `
-      div#container = {
-        ${stringifyStyleProps(this, styleProps)}
+      div#container{
+        ${stringifyStyleProps(this, styleProps.container)}
+      }
+      ::slotted(flex-item){
+        ${stringifyStyleProps(this, styleProps.slotted)}
       }
     `;
   }
