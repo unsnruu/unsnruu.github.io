@@ -19,10 +19,9 @@ export const stringifyStyleProps = (
   element: Element | null,
   styleProp: StyleProp
 ) => {
-  let string = ``;
-
   if (!element) return;
 
+  let string = ``;
   Object.keys(styleProp).forEach((_key) => {
     const key = _key as keyof StyleProp;
     string += `${convertToCssKey(key)}:${
