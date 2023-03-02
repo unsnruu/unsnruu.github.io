@@ -1,9 +1,12 @@
-import Component from "@/types/component";
+import Base, { styleProps as baseStyleProps } from "./Base";
 import { createStyleProps } from "@/utils/createStyleProps";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 
 const styleProps = createStyleProps({
   container: {
+    ...baseStyleProps.container,
+  },
+  slot: {
     lineHeight: "inherit",
     color: "inherit",
     display: "block",
@@ -12,7 +15,7 @@ const styleProps = createStyleProps({
   },
 });
 
-export default class Text extends Component {
+export default class Text extends Base {
   constructor() {
     super();
   }
@@ -27,12 +30,13 @@ export default class Text extends Component {
     `;
   }
   getStyle(): string {
+    const slot = this.querySelector('[slot="children"]');
     return `
     #container { 
       ${stringifyStyleProps(this, styleProps.container)}
     }
     ::slotted(*){
-      ${stringifyStyleProps(this, styleProps.container)}
+      ${stringifyStyleProps(slot, styleProps.container)}
     }
     `;
   }
