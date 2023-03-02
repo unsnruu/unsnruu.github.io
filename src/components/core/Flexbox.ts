@@ -7,8 +7,8 @@ export const styleProps = createStyleProps({
     ...baseStyleProps.container,
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center",
-    alignContent: "center",
+    justifyContent: "flex-start",
+    alignContent: "flex-start",
     flexDirection: "row",
     gap: "0",
   },
@@ -36,9 +36,9 @@ export default class Flexbox extends Base {
       div#container{
         ${stringifyStyleProps(this, styleProps.container)}
       }
-      ::slotted(flex-item){
-        ${stringifyStyleProps(this, styleProps.slottedFlexItem)}
-      }
+    ::slotted(flex-item){
+      ${stringifyStyleProps(this, styleProps.slottedFlexItem)}
+    }
     `;
   }
 }
