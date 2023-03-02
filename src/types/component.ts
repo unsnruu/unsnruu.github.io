@@ -11,7 +11,7 @@ export default class Component extends HTMLElement {
 
   connectedCallback() {
     window.requestAnimationFrame(() => {
-      this.render();
+      this._render();
       this.addEvents();
     });
   }
@@ -19,19 +19,29 @@ export default class Component extends HTMLElement {
   adoptedCallback() {}
   attributeChangedCallback() {
     window.requestAnimationFrame(() => {
-      this.render();
+      this._render();
     });
   }
   addEvents() {}
-  render() {
+  _render() {
     this.shadowRoot.innerHTML = "";
-    this.shadowRoot.appendChild(this.getStyle());
-    this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true));
+    this.shadowRoot.appendChild(this._createStyle());
+    this.shadowRoot.appendChild(this._createTemplate().content.cloneNode(true));
   }
-  getTemplate(): HTMLTemplateElement {
-    return document.createElement("template");
+  _createTemplate(): HTMLTemplateElement {
+    const template = document.createElement("template");
+    template.innerHTML = this.getTemplate();
+    return template;
   }
-  getStyle(): HTMLStyleElement {
-    return document.createElement("style");
+  _createStyle(): HTMLStyleElement {
+    const style = document.createElement("style");
+    style.innerHTML = this.getStyle();
+    return style;
+  }
+  getTemplate(): string {
+    return ``;
+  }
+  getStyle(): string {
+    return ``;
   }
 }
