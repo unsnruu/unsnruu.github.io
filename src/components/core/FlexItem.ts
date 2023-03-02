@@ -9,6 +9,10 @@ import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
  */
 
 const styledProps = createStyleProps({
+  host: {
+    display: "flex",
+    flex: 1,
+  },
   container: {
     ...flexStyleProps.container,
   },
@@ -27,7 +31,11 @@ export default class FlexItem extends FlexBox {
   }
   getStyle(): string {
     return `
-    div#container{${stringifyStyleProps(this, styledProps.container)}}
+    :host {${stringifyStyleProps(this, styledProps.host)}}
+    div#container{
+      ${stringifyStyleProps(this, styledProps.container)}
+      flex:1;
+    }
     `;
   }
 }
