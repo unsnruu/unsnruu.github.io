@@ -9,8 +9,7 @@ export const styleProps = createStyleProps({
     boxShadow: "none",
     boxSizing: "border-box",
     backgroundColor: "inherit",
-    width: "0px",
-    height: "0px",
+    border: "none",
   },
 });
 
