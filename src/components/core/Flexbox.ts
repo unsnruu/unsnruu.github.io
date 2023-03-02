@@ -1,22 +1,24 @@
-import Base, { baseStyleProps } from "./Base";
-import { StyleKeys, StyleProps } from "@/types/component";
+import Base, { styleProps as baseStyleProps } from "./Base";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
+import { createStyleProps } from "@/utils/createStyleProps";
 
-const flexboxStyleProps: StyleProps = {
-  ...baseStyleProps,
-  display: "flex",
-  flexWrap: "wrap",
-  justifyContent: "center",
-  alignContent: "center",
-  flexDirection: "row",
-};
+const flexboxStyleProps = createStyleProps({
+  container: {
+    ...baseStyleProps.container,
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignContent: "center",
+    flexDirection: "row",
+  },
+});
 
 export default class Flexbox extends Base {
   constructor() {
     super();
   }
-  static get observedAttributes(): StyleKeys[] {
-    return ["flexWrap", "justifyContent", "alignContent", "flexDirection"];
+  static get observedAttributes() {
+    return Object.keys(flexboxStyleProps.container);
   }
   getTemplate(): string {
     return `
