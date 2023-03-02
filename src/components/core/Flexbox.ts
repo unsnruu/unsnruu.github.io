@@ -18,22 +18,18 @@ export default class Flexbox extends Base {
   static get observedAttributes(): StyleKeys[] {
     return ["flexWrap", "justifyContent", "alignContent", "flexDirection"];
   }
-  getTemplate(): HTMLElement {
-    const template = document.createElement("template");
-    template.innerHTML = `
+  getTemplate(): string {
+    return `
     <div id="container">
       <slot name="children"></slot>
     </div>
     `;
-    return template;
   }
-  getStyle(): HTMLStyleElement {
-    const style = document.createElement("style");
-    style.innerHTML = `
+  getStyle(): string {
+    return `
       div#container = {
         ${stringifyStyleProps(this, flexboxStyleProps)}
       }
     `;
-    return style;
   }
 }

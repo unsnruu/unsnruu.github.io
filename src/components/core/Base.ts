@@ -23,24 +23,19 @@ export default class Base extends Component {
     return Object.keys(styleProps.container);
   }
 
-  getTemplate(): HTMLTemplateElement {
-    const template = document.createElement("template");
-    template.innerHTML = `
+  getTemplate(): string {
+    return `
       <div id="container">
         <slot name="children"></slot>
       <div/>
-    `.trim();
-    return template;
+    `;
   }
 
-  getStyle(): HTMLStyleElement {
-    const style = document.createElement("style");
-    style.innerHTML = `
+  getStyle(): string {
+    return `
       div#container {
         ${stringifyStyleProps(this, styleProps.container)}
       } 
       `.trim();
-
-    return style;
   }
 }
