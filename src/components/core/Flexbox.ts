@@ -2,7 +2,7 @@ import Base, { styleProps as baseStyleProps } from "./Base";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 import { createStyleProps } from "@/utils/createStyleProps";
 
-const flexboxStyleProps = createStyleProps({
+export const styleProps = createStyleProps({
   container: {
     ...baseStyleProps.container,
     display: "flex",
@@ -18,7 +18,7 @@ export default class Flexbox extends Base {
     super();
   }
   static get observedAttributes() {
-    return Object.keys(flexboxStyleProps.container);
+    return Object.keys(styleProps.container);
   }
   getTemplate(): string {
     return `
@@ -30,7 +30,7 @@ export default class Flexbox extends Base {
   getStyle(): string {
     return `
       div#container = {
-        ${stringifyStyleProps(this, flexboxStyleProps)}
+        ${stringifyStyleProps(this, styleProps)}
       }
     `;
   }
