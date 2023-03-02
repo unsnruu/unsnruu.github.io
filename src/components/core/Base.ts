@@ -2,7 +2,7 @@ import Component from "@/types/component";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 import { createStyleProps } from "@/utils/createStyleProps";
 
-export const styleProps = createStyleProps({
+const styleProps = createStyleProps({
   container: {
     margin: "0px",
     padding: "0px",
@@ -14,7 +14,7 @@ export const styleProps = createStyleProps({
   },
 });
 
-class Base extends Component {
+export default class Base extends Component {
   constructor() {
     super();
   }
@@ -44,5 +44,3 @@ class Base extends Component {
     return style;
   }
 }
-
-export default { name: "core-base", component: Base };
