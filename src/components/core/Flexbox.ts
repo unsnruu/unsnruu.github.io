@@ -10,9 +10,10 @@ export const styleProps = createStyleProps({
     justifyContent: "center",
     alignContent: "center",
     flexDirection: "row",
+    gap: "0",
   },
-  slotted: {
-    flex: "1",
+  slottedFlexItem: {
+    flex: 1,
   },
 });
 
@@ -36,7 +37,7 @@ export default class Flexbox extends Base {
         ${stringifyStyleProps(this, styleProps.container)}
       }
       ::slotted(flex-item){
-        ${stringifyStyleProps(this, styleProps.slotted)}
+        ${stringifyStyleProps(this, styleProps.slottedFlexItem)}
       }
     `;
   }
