@@ -1,4 +1,4 @@
-import type { StyleKeys, StyleProps } from "@/types/styleProps";
+import type { StyleProp } from "@/types/styleProp";
 
 const convertToCssKey = (name: string) => {
   const split = name.split("");
@@ -16,15 +16,17 @@ const convertToCssKey = (name: string) => {
 };
 
 export const stringifyStyleProps = (
-  element: Element,
-  styleProps: StyleProps
+  element: Element | null,
+  styleProp: StyleProp
 ) => {
   let string = ``;
 
-  Object.keys(styleProps).forEach((_key) => {
-    const key = _key as StyleKeys;
+  if (!element) return;
+
+  Object.keys(styleProp).forEach((_key) => {
+    const key = _key as keyof StyleProp;
     string += `${convertToCssKey(key)}:${
-      element.getAttribute(key) || styleProps[key]
+      element.getAttribute(key) || styleProp[key]
     };`;
   });
 
