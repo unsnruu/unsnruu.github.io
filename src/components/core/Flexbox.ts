@@ -14,6 +14,7 @@ export const styleProps = createStyleProps({
   },
   slottedFlexItem: {
     flex: 1,
+    display: "flex",
   },
 });
 
@@ -36,7 +37,7 @@ export default class Flexbox extends Base {
       div#container{
         ${stringifyStyleProps(this, styleProps.container)}
       }
-    ::slotted(flex-item){
+    ::slotted(*){
       ${stringifyStyleProps(this, styleProps.slottedFlexItem)}
     }
     `;
