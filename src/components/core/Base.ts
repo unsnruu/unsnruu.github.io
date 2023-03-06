@@ -10,6 +10,8 @@ export const styleProps = createStyleProps({
     boxSizing: "border-box",
     backgroundColor: "inherit",
     border: "none",
+    width: "auto",
+    height: "auto",
   },
 });
 
