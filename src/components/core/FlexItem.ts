@@ -13,29 +13,21 @@ const styledProps = createStyleProps({
     display: "flex",
     flex: 1,
   },
-  container: {
-    ...flexStyleProps.container,
-  },
 });
 
 export default class FlexItem extends FlexBox {
   constructor() {
     super();
+    this.setAttribute("slot", "flex-item");
   }
   getTemplate(): string {
     return `
-    <div id="container">
       <slot name="children"></slot>
-    </div>
     `;
   }
   getStyle(): string {
     return `
-    :host {${stringifyStyleProps(this, styledProps.host)}}
-    div#container{
-      ${stringifyStyleProps(this, styledProps.container)}
-      flex:1;
-    }
+    :host{${stringifyStyleProps(this, styledProps.host)}}
     `;
   }
 }

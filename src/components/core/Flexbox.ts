@@ -3,18 +3,15 @@ import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 import { createStyleProps } from "@/utils/createStyleProps";
 
 export const styleProps = createStyleProps({
-  container: {
+  host: {
     ...baseStyleProps.container,
     display: "flex",
+    width: "max-content",
     flexWrap: "wrap",
-    justifyContent: "flex-start",
-    alignContent: "flex-start",
+    justifyContent: "center",
+    alignContent: "center",
     flexDirection: "row",
     gap: "0",
-  },
-  slottedFlexItem: {
-    flex: 1,
-    display: "flex",
   },
 });
 
@@ -23,23 +20,16 @@ export default class Flexbox extends Base {
     super();
   }
   static get observedAttributes() {
-    return Object.keys(styleProps.container);
+    return [];
   }
   getTemplate(): string {
     return `
-    <div id="container">
-      <slot name="children"></slot>
-    </div>
+      <slot name="flex-item"></slot>
     `;
   }
   getStyle(): string {
     return `
-      div#container{
-        ${stringifyStyleProps(this, styleProps.container)}
-      }
-    ::slotted(*){
-      ${stringifyStyleProps(this, styleProps.slottedFlexItem)}
-    }
+    :host{${stringifyStyleProps(this, styleProps.host)}}
     `;
   }
 }
