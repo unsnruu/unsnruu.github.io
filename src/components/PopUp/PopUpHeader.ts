@@ -9,7 +9,8 @@ const styleProps = createStyleProps({
     fontFamily: "'Press Start 2P', cursive",
     color: "white",
   },
-  title: {
+  slot: {
+    display: "block",
     padding: "8px",
     paddingLeft: "1rem",
   },
@@ -29,14 +30,14 @@ export default class PopUpHeader extends Base {
   getTemplate(): string {
     return `
     <div id="container">
-      <div id="title">${this.title}</div>
+      <slot name="children"/>
     </div>
     `;
   }
   getStyle(): string {
     return `
     #container{${stringifyStyleProps(this, styleProps.container)}}
-    #title{${stringifyStyleProps(this, styleProps.title)}}
+    ::slotted(*){${stringifyStyleProps(this, styleProps.slot)}}
     `;
   }
 }

@@ -27,9 +27,11 @@ export default class PopUp extends Base {
   getTemplate(): string {
     return `
     <div id="container">
-      <pop-up-header title="abcde"></pop-up-header>
+      <pop-up-header>
+        <slot name="title" slot="children"/>
+      </pop-up-header>
       <pop-up-body>
-          <slot name="children" slot="children"></slot>
+        <slot name="body" slot="children"/>
       </pop-up-body>
     </div>
     `;
