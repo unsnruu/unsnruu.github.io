@@ -6,7 +6,7 @@ const styleProps = createStyleProps({
   host: {
     ...baseStyleProps.container,
     display: "block",
-    width: "28px",
+    width: "max-content",
     height: "28px",
     border: "2px outset white",
     borderBottom: "2px solid black",
@@ -21,7 +21,6 @@ const styleProps = createStyleProps({
   contentWrapper: {
     width: "100%",
     height: "100%",
-    padding: "4px",
     borderBottom: "2px solid  var(--main-darkgray)",
     borderRight: "2px solid var(--main-darkgray)",
   },
@@ -29,6 +28,11 @@ const styleProps = createStyleProps({
     width: "100%",
     height: "100%",
     overflow: "hidden",
+  },
+  imgWrapper: {
+    width: "28px",
+    height: "28px",
+    padding: "4px",
   },
   img: {
     width: "100%",
@@ -58,12 +62,21 @@ export default class Button extends Base {
     return `
     <flex-box width="100%" height="100%">
       <flex-item widht="100%" height="100%">
-        <div slot="children" id="content-wrapper">
-        ${
-          this.isImageElement()
-            ? `<img id="img" src="${this.src}">`
-            : `<div id="text">${this.text}</div>`
-        }
+        <flex-box slot="children" id="content-wrapper">
+          <flex-item>
+            <div id="text" slot="children">${this.text}</div>
+          </flex-item>
+          ${
+            this.isImageElement()
+              ? `
+              <flex-item>
+                <div slot="children" id="img-wrapper">
+                  <img id="img" src="${this.src}">
+                </div>
+              </flex-item>`
+              : ``
+          }
+        </flex-box>
       </flex-item>
     </flex-box>
     `;
@@ -75,6 +88,7 @@ export default class Button extends Base {
     :host(:active){${stringifyStyleProps(this, styleProps.hostActive)}}
     #content-wrapper{${stringifyStyleProps(null, styleProps.contentWrapper)}}
     #text{${stringifyStyleProps(null, styleProps.text)}}
+    #img-wrapper{${stringifyStyleProps(null, styleProps.imgWrapper)}}
     #img{${stringifyStyleProps(null, styleProps.img)}}
     `;
   }
