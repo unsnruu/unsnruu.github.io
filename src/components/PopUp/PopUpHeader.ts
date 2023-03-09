@@ -5,7 +5,7 @@ import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 const styleProps = createStyleProps({
   container: {
     width: "100%",
-    backgroundColor: "#0200A1",
+    backgroundColor: "var(--main-blue)",
     fontFamily: "'Press Start 2P', cursive",
     color: "white",
   },
