@@ -26,11 +26,13 @@ export default class PopUp extends Base {
   static get observedAttributes(): string[] {
     return [];
   }
+  get title() {
+    return this.getAttribute("title") ?? "";
+  }
   getTemplate(): string {
     return `
     <div id="container">
-      <pop-up-header>
-        <slot name="title" slot="children"/>
+      <pop-up-header title="${this.title}">
       </pop-up-header>
       <pop-up-body>
         <slot name="body" slot="children"/>
