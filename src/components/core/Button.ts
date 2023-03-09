@@ -6,8 +6,8 @@ const styleProps = createStyleProps({
   host: {
     ...baseStyleProps.container,
     display: "block",
-    width: "32px",
-    height: "32px",
+    width: "28px",
+    height: "28px",
     border: "2px outset white",
     borderBottom: "2px solid black",
     borderRight: "2px solid black",
