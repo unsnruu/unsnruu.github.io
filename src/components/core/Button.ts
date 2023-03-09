@@ -3,29 +3,37 @@ import { createStyleProps } from "@/utils/createStyleProps";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 
 const styleProps = createStyleProps({
-  container: {
+  host: {
     ...baseStyleProps.container,
-    width: "min-content",
-    height: "min-content",
+    display: "block",
+    width: "32px",
+    height: "32px",
     border: "2px outset white",
     borderBottom: "2px solid black",
     borderRight: "2px solid black",
     background: "var(--main-gray)",
   },
-  containerActive: {
+  hostActive: {
     border: "2px inset white",
     borderTop: "2px solid black",
     borderLeft: "2px solid black",
   },
-  slotText: {
+  contentWrapper: {
     width: "100%",
     height: "100%",
-    borderBottom: "1px solid  var(--main-darkgray)",
-    borderRight: "1px solid var(--main-darkgray)",
+    padding: "4px",
+    borderBottom: "2px solid  var(--main-darkgray)",
+    borderRight: "2px solid var(--main-darkgray)",
+  },
+  text: {
+    width: "100%",
+    height: "100%",
     overflow: "hidden",
   },
   img: {
-    padding: "0.25rem",
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
   },
 });
 
@@ -48,22 +56,25 @@ export default class Button extends Base {
   }
   getTemplate(): string {
     return `
-    <div id="container"> 
-      <flex-box width="100%" height="100%">
-        <flex-item widht="100%" height="100%">
-          <div id="slot-text" slot="children">
-          ${this.text}
-          ${this.isImageElement() && `<img id="img" src=${this.src}>`}
-        </flex-item>
-      </flex-box>
-    </div>
+    <flex-box width="100%" height="100%">
+      <flex-item widht="100%" height="100%">
+        <div slot="children" id="content-wrapper">
+        ${
+          this.isImageElement()
+            ? `<img id="img" src="${this.src}">`
+            : `<div id="text">${this.text}</div>`
+        }
+      </flex-item>
+    </flex-box>
     `;
   }
   getStyle(): string {
     return `
-    #container{${stringifyStyleProps(this, styleProps.container)}}
-    #container:active{${stringifyStyleProps(this, styleProps.containerActive)}}
-    #slot-text{${stringifyStyleProps(null, styleProps.slotText)}}
+    *{box-sizing:border-box}
+    :host{${stringifyStyleProps(this, styleProps.host)}}
+    :host(:active){${stringifyStyleProps(this, styleProps.hostActive)}}
+    #content-wrapper{${stringifyStyleProps(null, styleProps.contentWrapper)}}
+    #text{${stringifyStyleProps(null, styleProps.text)}}
     #img{${stringifyStyleProps(null, styleProps.img)}}
     `;
   }
