@@ -12,6 +12,15 @@ const styledProps = createStyleProps({
   host: {
     display: "flex",
     flex: 1,
+    width: "auto",
+    height: "auto",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  slot: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
@@ -28,6 +37,7 @@ export default class FlexItem extends FlexBox {
   getStyle(): string {
     return `
     :host{${stringifyStyleProps(this, styledProps.host)}}
+    ::slotted(*){${stringifyStyleProps(this, styledProps.slot)}}
     `;
   }
 }
