@@ -4,14 +4,15 @@ import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 
 const styleProps = createStyleProps({
   host: {
+    boxSizing: "border-box",
+    width: "100%",
     display: "block",
-    width: "max-content",
     backgroundColor: "var(--main-blue)",
     fontFamily: "'Press Start 2P', cursive",
     color: "white",
     padding: "0.5rem",
   },
-  slot: {
+  title: {
     display: "block",
     paddingLeft: "1rem",
   },
@@ -30,9 +31,9 @@ export default class PopUpHeader extends Base {
 
   getTemplate(): string {
     return `
-    <flex-box width="400px" justifyContent="flex-start">
-      <flex-item justifyContent="flex-start">
-        <div slot="children">
+    <flex-box justifyContent="flex-start" width="100%">
+      <flex-item justifyContent="flex-start" flex=1>
+        <div slot="children" id="title">
           ${this.title}
         </div>
       </flex-item>
@@ -49,7 +50,7 @@ export default class PopUpHeader extends Base {
   getStyle(): string {
     return `
     :host{${stringifyStyleProps(this, styleProps.host)}}
-    
+    #title{${stringifyStyleProps(null, styleProps.title)}}
     `;
   }
 }
