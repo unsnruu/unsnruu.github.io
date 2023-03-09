@@ -3,17 +3,19 @@ import { createStyleProps } from "@/utils/createStyleProps";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 
 const styleProps = createStyleProps({
-  container: {
+  host: {
     ...baseStyleProps.container,
     position: "absolute",
     top: "0px",
     left: "0px",
-    backgroundColor: "#C1C1C1",
+    backgroundColor: "var(--main-gray)",
+    border: "2px outset gray",
+  },
+  container: {
+    height: "100%",
+    boxSizing: "border-box",
     padding: "0.25rem",
-    border: "2px outset white",
-    outline: "1px groove silver",
-    borderRight: "2px solid black",
-    borderBottom: "2px solid black",
+    border: "1px outset white",
   },
 });
 
@@ -38,7 +40,8 @@ export default class PopUp extends Base {
   }
   getStyle(): string {
     return `
-    #container{${stringifyStyleProps(this, styleProps.container)}}
+    :host{${stringifyStyleProps(this, styleProps.host)}}
+    #container{${stringifyStyleProps(null, styleProps.container)}}
     `;
   }
 }
