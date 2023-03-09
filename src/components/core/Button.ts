@@ -7,7 +7,7 @@ const styleProps = createStyleProps({
     ...baseStyleProps.container,
     display: "block",
     width: "max-content",
-    height: "28px",
+    height: "100%",
     border: "2px outset white",
     borderBottom: "2px solid black",
     borderRight: "2px solid black",
@@ -30,8 +30,8 @@ const styleProps = createStyleProps({
     overflow: "hidden",
   },
   imgWrapper: {
-    width: "28px",
-    height: "28px",
+    width: "24px",
+    height: "24px",
     padding: "4px",
   },
   img: {
