@@ -1,4 +1,4 @@
-import FlexBox, { styleProps as flexStyleProps } from "./FlexBox";
+import FlexBox from "./FlexBox";
 import { createStyleProps } from "@/utils/createStyleProps";
 import { stringifyStyleProps } from "@/utils/stringifyStyleProps";
 
