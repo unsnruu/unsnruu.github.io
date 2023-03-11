@@ -21,7 +21,14 @@ export default class TaskBar extends Component {
   }
   getTemplate(): string {
     return `
-    <div></div>
+    <flex-box>
+      <flex-item>
+        <start-button slot="children"/>
+      </flex-item>
+      <flex-item>
+       <task-button slot="children"> 
+      </flex-item>
+    </flex-box>
     `;
   }
   getStyle(): string {
