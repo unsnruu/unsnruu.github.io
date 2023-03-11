@@ -5,6 +5,6 @@ export default class StartButton extends Component {
     super();
   }
   getTemplate(): string {
-    return `<core-button text="start" src="/icon-window.png"/>`;
+    return `<core-button text="start" src="/icon-window.png" height="32px"/>`;
   }
 }

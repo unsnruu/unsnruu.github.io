@@ -6,7 +6,7 @@ export default class TaskButton extends Component {
   }
   getTemplate(): string {
     return `
-      <core-button text="abcde"></core-button>
+      <core-button text="abcde" height="32px"></core-button>
     `;
   }
   getStyle(): string {
