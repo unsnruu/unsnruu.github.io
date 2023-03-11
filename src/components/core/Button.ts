@@ -19,15 +19,18 @@ const styleProps = createStyleProps({
     borderLeft: "2px solid black",
   },
   contentWrapper: {
+    boxSizing: "border-box",
     width: "100%",
     height: "100%",
     borderBottom: "2px solid  var(--main-darkgray)",
     borderRight: "2px solid var(--main-darkgray)",
   },
   text: {
+    boxSizing: "border-box",
     width: "100%",
     height: "100%",
     overflow: "hidden",
+    padding: "0px 4px",
   },
   imgWrapper: {
     width: "24px",
@@ -63,9 +66,6 @@ export default class Button extends Base {
     <flex-box width="100%" height="100%">
       <flex-item widht="100%" height="100%">
         <flex-box slot="children" id="content-wrapper">
-          <flex-item>
-            <div id="text" slot="children">${this.text}</div>
-          </flex-item>
           ${
             this.isImageElement()
               ? `
@@ -76,6 +76,9 @@ export default class Button extends Base {
               </flex-item>`
               : ``
           }
+           <flex-item>
+            <div id="text" slot="children">${this.text}</div>
+          </flex-item>
         </flex-box>
       </flex-item>
     </flex-box>
