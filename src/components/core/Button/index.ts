@@ -1,6 +1,6 @@
 import { LitElement, html, css } from "lit";
-import { customElement, property } from "lit/decorators";
-import { baseStyle } from "../Base/index.styles";
+import { customElement, property } from "lit/decorators.js";
+import { baseStyle } from "../Base/index.styles.js";
 
 @customElement("core-button")
 export class Button extends LitElement {
@@ -10,7 +10,7 @@ export class Button extends LitElement {
   static styles = [
     baseStyle,
     css`
-      host {
+      :host {
         display: block;
         width: max-content;
         height: 100%;
@@ -28,22 +28,7 @@ export class Button extends LitElement {
   ];
 
   render() {
-    html`
-      <flex-box width="100%" height="100%">
-        <flex-item widht="100%" height="100%">
-          <flex-box slot="children" id="content-wrapper">
-            <flex-item>
-              <div slot="children" id="img-wrapper">
-                <img id="img" src="${this.src}" />
-              </div>
-            </flex-item>
-            <flex-item>
-              <div id="text" slot="children">${this.text}</div>
-            </flex-item>
-          </flex-box>
-        </flex-item>
-      </flex-box>
-    `;
+    return html`<div>${this.text}</div>`;
   }
 }
 
