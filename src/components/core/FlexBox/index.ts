@@ -7,7 +7,7 @@ export class FlexBox extends LitElement {
   static styles = [
     baseStyle,
     css`
-      host {
+      :host {
         display: flex;
         width: max-content;
         flex-wrap: wrap;
