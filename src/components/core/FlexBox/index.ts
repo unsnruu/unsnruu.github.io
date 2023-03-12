@@ -1,5 +1,5 @@
 import { LitElement, css, html } from "lit";
-import { customElement } from "lit/decorators";
+import { customElement } from "lit/decorators.js";
 import { baseStyle } from "../Base/index.styles";
 
 @customElement("flex-box")
@@ -20,5 +20,11 @@ export class FlexBox extends LitElement {
   ];
   render() {
     return html`<slot name="flex-item"></slot> `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "flex-box": FlexBox;
   }
 }
