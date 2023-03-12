@@ -1,5 +1,6 @@
 import { LitElement, html } from "lit";
-import { customElement } from "lit/decorators";
+import { customElement } from "lit/decorators.js";
+
 import { baseStyle } from "./index.styles";
 
 @customElement("core-base")
