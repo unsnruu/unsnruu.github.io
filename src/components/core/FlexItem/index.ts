@@ -19,6 +19,7 @@ export class FlexItem extends LitElement {
     :host {
       display: flex;
       height: auto;
+      width: auto;
       justify-content: center;
       align-items: center;
     }
@@ -38,7 +39,10 @@ export class FlexItem extends LitElement {
       </style>
     `;
 
-    return html`${flexStyle}<slot></slot> `;
+    return html`
+      ${flexStyle}
+      <slot></slot>
+    `;
   }
 }
 
