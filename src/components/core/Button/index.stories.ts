@@ -8,10 +8,13 @@ export default {
   title: "Core/Button",
 } as Meta;
 
-export const Default: Story<Button> = ({ text }) => {
-  return html`<core-button .text=${text}></core-button>`;
+export const Default: Story<Button> = ({ text, src }) => {
+  return html`
+    <core-button .text=${text} .src=${src}></core-button>
+  `;
 };
 
 Default.args = {
   text: "Button",
+  src: "/icon-cancel.png",
 };

@@ -1,34 +1,33 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { baseStyle } from "../Base/index.styles.js";
+import { styles } from "./index.styles";
 
 @customElement("core-button")
 export class Button extends LitElement {
-  @property() src = "";
-  @property() text = "";
+  @property() src?: string;
+  @property() text?: string;
 
-  static styles = [
-    baseStyle,
-    css`
-      :host {
-        display: block;
-        width: max-content;
-        height: 100%;
-        border: 2px outset white;
-        border-bottom: 2px solid black;
-        border-right: 2px solid black;
-        background: var(--main-gray);
-      }
-      :host(:active) {
-        border: 2px inset white;
-        border-top: 2px solid black;
-        border-left: 2px solid black;
-      }
-    `,
-  ];
+  static styles = [baseStyle, styles];
 
+  TextTemplate() {
+    if (!this.text) return html``;
+    return html`
+      <flex-item .flex=${1}><div>${this.text}</div></flex-item>
+    `;
+  }
+  ImgTemplate() {
+    if (!this.src) return html``;
+    return html`
+      <flex-item id="img-wrapper" .flex=${1}>
+        <img id="img" src=${this.src} />
+      </flex-item>
+    `;
+  }
   render() {
-    return html`<div>${this.text}</div>`;
+    return html`
+      <flex-box .gap=${4}>${this.TextTemplate()}${this.ImgTemplate()}</flex-box>
+    `;
   }
 }
 
