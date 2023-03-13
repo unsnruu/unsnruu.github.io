@@ -9,7 +9,7 @@ export class FlexBox extends LitElement {
     css`
       :host {
         display: flex;
-        width: max-content;
+        width: 100%;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
