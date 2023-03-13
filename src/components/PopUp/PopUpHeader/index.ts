@@ -37,3 +37,8 @@ export class PopUpHeader extends LitElement {
     `;
   }
 }
+declare global {
+  interface HTMLElementTagNameMap {
+    "pop-up-header": PopUpHeader;
+  }
+}
