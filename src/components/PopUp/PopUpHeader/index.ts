@@ -1,8 +1,12 @@
 import { LitElement, html, css } from "lit";
-import { customElement } from "lit/decorators";
+import { customElement, property } from "lit/decorators.js";
+
+import Icons from "@/constants/Icons";
 
 @customElement("pop-up-header")
 export class PopUpHeader extends LitElement {
+  @property() header?: string;
+
   static styles = css`
     :host {
       box-sizing: border-box;
@@ -16,21 +20,15 @@ export class PopUpHeader extends LitElement {
   `;
   render() {
     return html`
-      <flex-box justifyContent="flex-start" width="100%">
-        <flex-item justifyContent="flex-start" flex="1">
-          <div slot="children" id="title">${this.title}</div>
+      <flex-box>
+        <flex-item .flex=${1}>
+          <div>${this.header}</div>
         </flex-item>
-        <flex-item justifyContent="flex-end">
-          <flex-box slot="children" id="icon-container">
-            <flex-item
-              ><core-button slot="children" src="/icon-minimize.png"
-            /></flex-item>
-            <flex-item
-              ><core-button slot="children" src="/icon-maximize.png"
-            /></flex-item>
-            <flex-item
-              ><core-button slot="children" src="/icon-cancel.png"
-            /></flex-item>
+        <flex-item .flex=${1}>
+          <flex-box id="icon-container">
+            <flex-item><core-button .src=${Icons.MINIMIZE} /></flex-item>
+            <flex-item><core-button .src=${Icons.MAXIMIZE} /></flex-item>
+            <flex-item><core-button .src=${Icons.CANCEL} /></flex-item>
           </flex-box>
         </flex-item>
       </flex-box>
