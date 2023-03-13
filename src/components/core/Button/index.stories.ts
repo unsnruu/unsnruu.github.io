@@ -3,6 +3,7 @@ import { html } from "lit-html";
 
 import "./index";
 import { Button } from "./index";
+import Icons from "@/constants/Icons";
 
 export default {
   title: "Core/Button",
@@ -17,4 +18,10 @@ export const Default: Story<Button> = ({ text, src }) => {
 Default.args = {
   text: "Button",
   src: "/icon-cancel.png",
+};
+
+export const ImageOnly: Story<Meta> = () => {
+  return html`
+    <core-button .src=${Icons.CANCEL}></core-button>
+  `;
 };
