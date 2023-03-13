@@ -1,6 +1,5 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { styleMap } from "lit/directives/style-map.js";
 
 /**
  * FlexItem은 단순히 FlexBox의 slotted CSS 연산자를 이용하기 위한 컴포넌트입니다.
@@ -14,13 +13,11 @@ export class FlexItem extends LitElement {
     super();
     this.setAttribute("slot", "flex-item");
   }
-  @property() flex = "0";
+  @property() flex = 0;
 
   static styles = css`
     :host {
       display: flex;
-      flex: 0;
-      width: max-content;
       height: auto;
       justify-content: center;
       align-items: center;
@@ -33,9 +30,15 @@ export class FlexItem extends LitElement {
   `;
 
   render() {
-    const style = styleMap({ flex: this.flex });
+    const flexStyle = html`
+      <style>
+        :host {
+          flex: ${this.flex};
+        }
+      </style>
+    `;
 
-    return html` <slot style=${style}></slot> `;
+    return html`${flexStyle}<slot></slot> `;
   }
 }
 
