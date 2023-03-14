@@ -1,10 +1,13 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { baseStyle } from "../Base/index.styles";
+import type { Property } from "csstype";
 
 @customElement("flex-box")
 export class FlexBox extends LitElement {
   @property() gap?: number;
+  @property() justifyContent?: Property.JustifyContent;
+  @property() alignItems?: Property.AlignItems;
 
   static styles = [
     baseStyle,
@@ -14,23 +17,23 @@ export class FlexBox extends LitElement {
         width: 100%;
         height: 100%;
         flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
         flex-direction: row;
       }
     `,
   ];
   render() {
-    const gapStyle = html`
+    const style = html`
       <style>
         :host {
           gap: ${this.gap ?? 0}px;
+          justify-content: ${this.justifyContent || "center"};
+          align-items: ${this.alignItems || "center"};
         }
       </style>
     `;
 
     return html`
-      ${gapStyle}
+      ${style}
       <slot name="flex-item"></slot>
     `;
   }
