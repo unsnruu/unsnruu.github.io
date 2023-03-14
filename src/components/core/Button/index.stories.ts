@@ -1,7 +1,6 @@
 import { Story, Meta } from "@storybook/web-components";
 import { html } from "lit-html";
 
-import "./index";
 import { Button } from "./index";
 import Icons from "@/constants/Icons";
 
