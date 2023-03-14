@@ -5,7 +5,7 @@ import { PopUpHeader } from "./index";
 import "@/components/index";
 
 export default {
-  title: "component/PopUp/PopUpHeader",
+  title: "PopUp/PopUpHeader",
 } as Meta;
 
 export const Default: Story<PopUpHeader> = ({ header }) => {
