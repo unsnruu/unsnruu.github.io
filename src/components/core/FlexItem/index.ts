@@ -25,11 +25,6 @@ export class FlexItem extends LitElement {
       width: auto;
       align-items: center;
     }
-    ::slotted(*) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
   `;
 
   render() {
