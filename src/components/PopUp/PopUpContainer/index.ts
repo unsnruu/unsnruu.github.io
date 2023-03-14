@@ -32,7 +32,7 @@ export class PopUp extends LitElement {
       <div id="container">
         <pop-up-header></pop-up-header>
         <pop-up-body>
-          <slot name="body"></slot>
+          <slot></slot>
         </pop-up-body>
       </div>
     `;
