@@ -1,5 +1,5 @@
 import { LitElement, html, css } from "lit";
-import { customElement } from "lit/decorators";
+import { customElement } from "lit/decorators.js";
 
 @customElement("pop-up-body")
 export class PopUpBody extends LitElement {
@@ -10,6 +10,14 @@ export class PopUpBody extends LitElement {
   `;
 
   render() {
-    return html` <slot></slot> `;
+    return html`
+      <slot></slot>
+    `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "pop-up-body": PopUpBody;
   }
 }
