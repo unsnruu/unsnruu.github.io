@@ -9,8 +9,6 @@ import type { Property } from "csstype";
  * flex 값이 1로 설정되어서 가득 찬 화면을 구성할 수 있습니다.
  */
 
-type A = Property.JustifyContent;
-
 @customElement("flex-item")
 export class FlexItem extends LitElement {
   constructor() {
