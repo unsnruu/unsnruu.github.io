@@ -46,12 +46,18 @@ Default.args = {
   justifyContent: "flex-start",
 };
 
-export const WithinFlexbox: Story<FlexItem> = () => {
+export const WithinFlexbox: Story<FlexItem> = ({ justifyContent }) => {
   return html`
     <flex-box>
-      <flex-item .flex=${1}>item1</flex-item>
-      <flex-item .flex=${2}>item2</flex-item>
-      <flex-item .flex=${3}>item3</flex-item>
+      <flex-item .flex=${1} .justifyContent=${justifyContent}>
+        <span>item1</span>
+      </flex-item>
+      <flex-item .flex=${2} .justifyContent=${justifyContent}>
+        <span>item2</span>
+      </flex-item>
+      <flex-item .flex=${3} .justifyContent=${justifyContent}>
+        <span>item3</span>
+      </flex-item>
     </flex-box>
   `;
 };
