@@ -38,3 +38,8 @@ export class PopUp extends LitElement {
     `;
   }
 }
+declare global {
+  interface HTMLElementTagNameMap {
+    "pop-up": PopUp;
+  }
+}
