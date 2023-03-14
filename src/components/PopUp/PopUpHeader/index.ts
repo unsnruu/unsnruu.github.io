@@ -25,7 +25,7 @@ export class PopUpHeader extends LitElement {
           <div>${this.header}</div>
         </flex-item>
         <flex-item .flex=${1}>
-          <flex-box id="icon-container">
+          <flex-box .justifyContent=${"flex-end"}>
             <flex-item><core-button .src=${Icons.MINIMIZE} /></flex-item>
             <flex-item><core-button .src=${Icons.MAXIMIZE} /></flex-item>
             <flex-item><core-button .src=${Icons.CANCEL} /></flex-item>
