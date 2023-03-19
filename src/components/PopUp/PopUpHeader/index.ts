@@ -13,7 +13,7 @@ export class PopUpHeader extends LitElement {
       width: 100%;
       display: block;
       background-color: var(--main-blue);
-      font-family: "'Press Start 2P', cursive";
+      font-family: "Press Start 2P", cursive;
       color: white;
       padding: 0.5rem;
     }
