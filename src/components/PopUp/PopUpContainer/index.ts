@@ -37,7 +37,7 @@ export class PopUp extends LitElement {
     return html`
       ${style}
       <div id="container">
-        <pop-up-header></pop-up-header>
+        <pop-up-header .header=${this.header}></pop-up-header>
         <pop-up-body>
           <slot></slot>
         </pop-up-body>
