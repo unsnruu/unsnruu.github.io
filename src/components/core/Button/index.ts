@@ -26,7 +26,7 @@ export class Button extends LitElement {
   }
   render() {
     return html`
-      <flex-box .gap=${4}>${this.TextTemplate()}${this.ImgTemplate()}</flex-box>
+      <flex-box .gap=${4}>${this.ImgTemplate()}${this.TextTemplate()}</flex-box>
     `;
   }
 }
