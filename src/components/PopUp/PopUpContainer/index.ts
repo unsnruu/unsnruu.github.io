@@ -4,8 +4,8 @@ import { baseStyle } from "@/components/core/Base/index.styles";
 
 @customElement("pop-up")
 export class PopUp extends LitElement {
-  @property() top = 0;
-  @property() left = 0;
+  @property() top?: number;
+  @property() left?: number;
   @property() header = "";
 
   static styles = [
@@ -13,8 +13,6 @@ export class PopUp extends LitElement {
     css`
       :host {
         position: absolute;
-        top: 0px;
-        left: 0px;
         background-color: var(--main-gray);
         border: 2px outset gray;
       }
@@ -28,7 +26,16 @@ export class PopUp extends LitElement {
   ];
 
   render() {
+    const style = html`
+      <style>
+        :host {
+          top: ${this.top || 0}px;
+          left: ${this.left || 0}px;
+        }
+      </style>
+    `;
     return html`
+      ${style}
       <div id="container">
         <pop-up-header></pop-up-header>
         <pop-up-body>
