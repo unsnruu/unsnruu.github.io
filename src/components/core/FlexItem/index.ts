@@ -20,8 +20,9 @@ export class FlexItem extends LitElement {
 
   static styles = css`
     :host {
+      box-sizing: border-box;
       display: flex;
-      height: auto;
+      height: 100%;
       width: auto;
       align-items: center;
     }
