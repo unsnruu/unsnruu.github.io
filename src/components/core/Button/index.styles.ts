@@ -3,6 +3,7 @@ import { css } from "lit";
 export const styles = css`
   :host {
     display: block;
+    box-sizing: border-box;
     width: max-content;
     height: 100%;
     border: 2px outset white;
@@ -19,7 +20,6 @@ export const styles = css`
   #img-wrapper {
     box-sizing: border-box;
     width: 16px;
-    height: 16px;
     padding-right: 0rem;
   }
   #img {
