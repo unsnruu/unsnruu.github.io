@@ -7,10 +7,12 @@ const START_ICON = "/icon-window.png";
 export class StartButton extends LitElement {
   static styles = css`
     :host {
+      height: 100%;
       font-family: "Press Start 2P", cursive;
       font-size: 0.5rem;
       letter-spacing: -1px;
       user-select: none;
+      cursor: pointer;
     }
   `;
 

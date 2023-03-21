@@ -8,8 +8,13 @@ export class TaskButton extends LitElement {
     super();
     this.name = "Default Task";
   }
-
-  static styles = css``;
+  static styles = css`
+    :host {
+      height: 100%;
+      cursor: pointer;
+      user-select: none;
+    }
+  `;
 
   render() {
     return html`
