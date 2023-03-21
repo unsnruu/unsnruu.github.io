@@ -13,7 +13,9 @@ export class Button extends LitElement {
   TextTemplate() {
     if (!this.text) return html``;
     return html`
-      <flex-item .flex=${1}><div>${this.text}</div></flex-item>
+      <flex-item .flex=${1}>
+        <div>${this.text}</div>
+      </flex-item>
     `;
   }
   ImgTemplate() {
