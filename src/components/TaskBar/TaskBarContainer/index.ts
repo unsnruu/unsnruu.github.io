@@ -4,10 +4,12 @@
  * taskbutton 크기 고정시키기 k
  */
 import { LitElement, html, css } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 
 @customElement("task-bar")
 export class TaskBar extends LitElement {
+  @property() apps: string[] = [];
+
   static styles = css`
     :host {
       position: absolute;
@@ -17,10 +19,19 @@ export class TaskBar extends LitElement {
       background-color: var(--main-gray);
       border-top: 1px solid white;
       outline: 1px solid var(--main-gray);
-      overflow: hidden;
+      overflow: visible;
+      flex-wrap: wrap;
+      z-index: 99;
     }
   `;
 
+  taskButtonsTemplate() {
+    return this.apps.map(
+      (app) => html`
+        <flex-item><task-button .name=${app}></task-button></flex-item>
+      `
+    );
+  }
   render() {
     return html`
       <flex-box .justifyContent=${"flex-start"} .alignItems=${"flex-start"}>
@@ -29,12 +40,7 @@ export class TaskBar extends LitElement {
         </flex-item>
         <flex-item .flex=${1}>
           <flex-box .justifyContent=${"flex-start"}>
-            <flex-item><task-button .name=${"abc"}></task-button></flex-item>
-            <flex-item><task-button></task-button></flex-item>
-            <flex-item><task-button></task-button></flex-item>
-            <flex-item><task-button></task-button></flex-item>
-            <flex-item><task-button></task-button></flex-item>
-            <flex-item><task-button></task-button></flex-item>
+            ${this.taskButtonsTemplate()}
           </flex-box>
         </flex-item>
       </flex-box>
