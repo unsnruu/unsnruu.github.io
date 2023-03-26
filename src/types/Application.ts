@@ -1,5 +1,7 @@
+import { NanoId } from "./NanoId";
+
 export default interface Application {
-  id: string;
+  id: NanoId;
   isOpen: boolean;
   minimize: boolean;
   maximize: boolean;
