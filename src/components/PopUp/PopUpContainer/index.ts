@@ -1,12 +1,14 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { baseStyle } from "@/components/core/Base/index.styles";
+import type { NanoId } from "@/types/NanoId";
 
 @customElement("pop-up")
 export class PopUp extends LitElement {
   @property() top?: number;
   @property() left?: number;
   @property() header = "";
+  @property() appId: NanoId | null = null;
 
   static styles = [
     baseStyle,
@@ -37,7 +39,10 @@ export class PopUp extends LitElement {
     return html`
       ${style}
       <div id="container">
-        <pop-up-header .header=${this.header}></pop-up-header>
+        <pop-up-header
+          .header=${this.header}
+          .appId=${this.appId}
+        ></pop-up-header>
         <pop-up-body>
           <slot></slot>
         </pop-up-body>
