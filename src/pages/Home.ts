@@ -1,26 +1,23 @@
 import ReduxLitElement from "@/types/ReduxLitElement";
+
 import { html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 
-import { store } from "@/model/store";
-import type { Unsubscribe } from "@reduxjs/toolkit";
-import type { ApplicationsState } from "@/model/applicationsSlice";
+import { RootState } from "@/model/store";
+
+import type { ExecutionContextState } from "@/model/executionContextSlice";
 
 @customElement("home-page")
 export default class Home extends ReduxLitElement {
-  unsubscribe!: Unsubscribe;
-  @state() applications: ApplicationsState = [];
+  @state() executionContext: ExecutionContextState = [];
 
-  _setState() {
-    this.applications = store.getState().applications;
+  _setState(reduxState: RootState) {
+    this.executionContext = reduxState.executionContext;
   }
 
   render() {
     return html`
-      <div>
-        <div></div>
-        <task-bar .apps=${this.applications.map((app) => app.title)}></task-bar>
-      </div>
+      <div></div>
     `;
   }
 }
