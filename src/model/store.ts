@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import applicationsReducer from "./applicationsSlice";
+import { executionContextReducer } from "./executionContextSlice";
 
 export const store = configureStore({
   reducer: {
-    applications: applicationsReducer,
+    executionContext: executionContextReducer,
   },
 });
 
