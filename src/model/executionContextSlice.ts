@@ -17,8 +17,14 @@ export const executionContextSlice = createSlice({
         return { ...app, isOpen: false };
       });
     },
+    minimizeAppById: (state, action: PayloadAction<NanoId>) => {
+      return state.map((app) => {
+        if (app.id !== action.payload) return app;
+        return { ...app, minimize: true, maximize: false };
+      });
+    },
   },
 });
 
-export const { closeAppById } = executionContextSlice.actions;
+export const { closeAppById, minimizeAppById } = executionContextSlice.actions;
 export const executionContextReducer = executionContextSlice.reducer;
