@@ -2,10 +2,19 @@ import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import Icons from "@/constants/Icons";
+import { store } from "@/model/store";
+import {
+  minimizeAppById,
+  closeAppById,
+  maximizeAppById,
+} from "@/model/executionContextSlice";
+
+import type { NanoId } from "@/types/NanoId";
 
 @customElement("pop-up-header")
 export class PopUpHeader extends LitElement {
   @property() header?: string;
+  @property() appId: NanoId | null = null;
 
   static styles = css`
     :host {
@@ -18,6 +27,18 @@ export class PopUpHeader extends LitElement {
       padding: 0.5rem;
     }
   `;
+  _close() {
+    if (!this.appId) return;
+    store.dispatch(closeAppById(this.appId));
+  }
+  _minimize() {
+    if (!this.appId) return;
+    store.dispatch(minimizeAppById(this.appId));
+  }
+  _maximize() {
+    if (!this.appId) return;
+    store.dispatch(maximizeAppById(this.appId));
+  }
   render() {
     return html`
       <flex-box>
@@ -26,9 +47,15 @@ export class PopUpHeader extends LitElement {
         </flex-item>
         <flex-item .flex=${1}>
           <flex-box .justifyContent=${"flex-end"}>
-            <flex-item><core-button .src=${Icons.MINIMIZE} /></flex-item>
-            <flex-item><core-button .src=${Icons.MAXIMIZE} /></flex-item>
-            <flex-item><core-button .src=${Icons.CANCEL} /></flex-item>
+            <flex-item @click=${this._minimize}>
+              <core-button .src=${Icons.MINIMIZE}></core-button>
+            </flex-item>
+            <flex-item @click=${this._maximize}>
+              <core-button .src=${Icons.MAXIMIZE}></core-button>
+            </flex-item>
+            <flex-item @click=${this._close}>
+              <core-button .src=${Icons.CANCEL}></core-button>
+            </flex-item>
           </flex-box>
         </flex-item>
       </flex-box>
