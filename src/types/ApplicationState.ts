@@ -9,4 +9,5 @@ export interface ApplicationState {
   maximize: boolean;
   appName: Applications;
   content: ReturnType<typeof html>;
+  isFocused: boolean;
 }
