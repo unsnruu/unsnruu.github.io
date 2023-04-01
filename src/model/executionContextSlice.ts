@@ -13,8 +13,8 @@ export const executionContextSlice = createSlice({
   reducers: {
     focusById: (state, action: PayloadAction<NanoId>) => {
       return state.map((app) => {
-        if (app.id !== action.payload) return app;
-        return { ...app, isFocused: false };
+        if (app.id !== action.payload) return { ...app, isFocused: false };
+        return { ...app, isFocused: true };
       });
     },
     openAppById: (state, action: PayloadAction<NanoId>) => {

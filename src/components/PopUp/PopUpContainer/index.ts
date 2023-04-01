@@ -5,10 +5,11 @@ import type { NanoId } from "@/types/NanoId";
 
 @customElement("pop-up")
 export class PopUp extends LitElement {
-  @property() top?: number;
-  @property() left?: number;
   @property() header = "";
   @property() appId: NanoId | null = null;
+  @property() isFocused: boolean = false;
+  @property() top?: number;
+  @property() left?: number;
 
   static styles = [
     baseStyle,
@@ -33,6 +34,7 @@ export class PopUp extends LitElement {
         :host {
           top: ${this.top || 0}px;
           left: ${this.left || 0}px;
+          z-index: ${this.isFocused ? 99 : 0};
         }
       </style>
     `;

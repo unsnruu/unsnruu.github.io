@@ -6,9 +6,17 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
+import { store } from "@/model/store";
+import { focusById } from "@/model/executionContextSlice";
+
+import type { ApplicationState } from "@/types/ApplicationState";
+import type { NanoId } from "@/types/NanoId";
+
+type TaskBarAppState = Pick<ApplicationState, "isFocused" | "appName" | "id">;
+
 @customElement("task-bar")
 export class TaskBar extends LitElement {
-  @property() apps: string[] = [];
+  @property() apps: TaskBarAppState[] = [];
 
   static styles = css`
     :host {
@@ -24,11 +32,15 @@ export class TaskBar extends LitElement {
       z-index: 99;
     }
   `;
-
+  createFocusHandler(appId: NanoId) {
+    return () => store.dispatch(focusById(appId));
+  }
   taskButtonsTemplate() {
     return this.apps.map(
-      (app) => html`
-        <flex-item><task-button .name=${app}></task-button></flex-item>
+      ({ appName, isFocused, id }) => html`
+        <flex-item @click=${this.createFocusHandler(id)}>
+          <task-button .name=${appName} .isFocused=${isFocused}></task-button>
+        </flex-item>
       `
     );
   }

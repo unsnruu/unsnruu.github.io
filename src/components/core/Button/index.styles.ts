@@ -12,7 +12,8 @@ export const styles = css`
     background: var(--main-gray);
     padding: 0.5rem;
   }
-  :host(:active) {
+  :host(:active),
+  :host(.active) {
     border: 2px inset white;
     border-top: 2px solid black;
     border-left: 2px solid black;
