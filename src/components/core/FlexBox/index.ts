@@ -13,11 +13,10 @@ export class FlexBox extends LitElement {
     baseStyle,
     css`
       :host {
-        box-sizing: border-box;
-        display: flex;
         width: 100%;
         height: 100%;
-        flex-wrap: wrap;
+        box-sizing: border-box;
+        display: flex;
         flex-direction: row;
       }
     `,
@@ -26,7 +25,7 @@ export class FlexBox extends LitElement {
     const style = html`
       <style>
         :host {
-          gap: ${this.gap ?? 0}px;
+          gap: ${this.gap || 0}px;
           justify-content: ${this.justifyContent || "center"};
           align-items: ${this.alignItems || "center"};
         }
@@ -35,7 +34,7 @@ export class FlexBox extends LitElement {
 
     return html`
       ${style}
-      <slot name="flex-item"></slot>
+      <slot></slot>
     `;
   }
 }

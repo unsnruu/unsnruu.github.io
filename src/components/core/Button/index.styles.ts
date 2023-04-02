@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-export const styles = css`
+export const basicStyle = css`
   :host {
     display: block;
     box-sizing: border-box;
@@ -11,6 +11,7 @@ export const styles = css`
     border-right: 2px solid black;
     background: var(--main-gray);
     padding: 0.5rem;
+    user-select: none;
   }
   :host(:active),
   :host(.active) {
@@ -18,14 +19,17 @@ export const styles = css`
     border-top: 2px solid black;
     border-left: 2px solid black;
   }
+`;
+
+export const imgStyle = css`
   #img-wrapper {
     box-sizing: border-box;
     width: 16px;
-    padding-right: 0rem;
+    height: 16px;
   }
   #img {
+    object-fit: contain;
     width: 100%;
     height: 100%;
-    object-fit: contain;
   }
 `;

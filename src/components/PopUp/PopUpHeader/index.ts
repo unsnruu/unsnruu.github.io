@@ -6,14 +6,15 @@ import { store } from "@/model/store";
 import {
   minimizeAppById,
   closeAppById,
-  maximizeAppById,
+  togglieMaiximizeById,
+  focusById,
 } from "@/model/executionContextSlice";
 
 import type { NanoId } from "@/types/NanoId";
 
 @customElement("pop-up-header")
 export class PopUpHeader extends LitElement {
-  @property() header?: string;
+  @property() header: string = "";
   @property() appId: NanoId | null = null;
 
   static styles = css`
@@ -26,7 +27,15 @@ export class PopUpHeader extends LitElement {
       color: white;
       padding: 0.5rem;
     }
+    #header {
+      overflow: hidden;
+    }
   `;
+
+  _focus() {
+    if (!this.appId) return;
+    store.dispatch(focusById(this.appId));
+  }
   _close() {
     if (!this.appId) return;
     store.dispatch(closeAppById(this.appId));
@@ -37,13 +46,14 @@ export class PopUpHeader extends LitElement {
   }
   _maximize() {
     if (!this.appId) return;
-    store.dispatch(maximizeAppById(this.appId));
+    store.dispatch(togglieMaiximizeById(this.appId));
   }
+
   render() {
     return html`
       <flex-box>
-        <flex-item .flex=${1}>
-          <div>${this.header}</div>
+        <flex-item id="header" @click=${this._focus} .flex=${1}>
+          <core-text .ellipsis=${true} .text=${this.header}></core-text>
         </flex-item>
         <flex-item .flex=${1}>
           <flex-box .justifyContent=${"flex-end"}>

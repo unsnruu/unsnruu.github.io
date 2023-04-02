@@ -1,6 +1,12 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
+
 import { baseStyle } from "@/components/core/Base/index.styles";
+import { basicStyle, minimizeStyle, maximizeStyle } from "./index.styles";
+
+import { store } from "@/model/store";
+import { focusById } from "@/model/executionContextSlice";
+
 import type { NanoId } from "@/types/NanoId";
 
 @customElement("pop-up")
@@ -11,23 +17,15 @@ export class PopUp extends LitElement {
   @property() top?: number;
   @property() left?: number;
 
-  static styles = [
-    baseStyle,
-    css`
-      :host {
-        position: absolute;
-        background-color: var(--main-gray);
-        border: 2px outset gray;
-      }
-      #container {
-        height: 100%;
-        box-sizing: border-box;
-        padding: 0.25rem;
-        border: 1px outset white;
-      }
-    `,
-  ];
+  static styles = [baseStyle, basicStyle, minimizeStyle, maximizeStyle];
 
+  _focus(e: MouseEvent) {
+    if (!this.appId) return;
+    if (e.target instanceof Element && e.target.matches("pop-up-header")) {
+      return;
+    }
+    store.dispatch(focusById(this.appId));
+  }
   render() {
     const style = html`
       <style>
@@ -38,14 +36,13 @@ export class PopUp extends LitElement {
         }
       </style>
     `;
+
     return html`
       ${style}
-      <div id="container">
-        <pop-up-header
-          .header=${this.header}
-          .appId=${this.appId}
-        ></pop-up-header>
-        <pop-up-body>
+      <div id="container" @click=${this._focus}>
+        <pop-up-header .header=${this.header} .appId=${this.appId}>
+        </pop-up-header>
+        <pop-up-body @click=${this._focus}>
           <slot></slot>
         </pop-up-body>
       </div>

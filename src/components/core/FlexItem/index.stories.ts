@@ -1,62 +1,37 @@
 import { Story, Meta } from "@storybook/web-components";
 import { html } from "lit-html";
-
+import { styleMap } from "lit/directives/style-map.js";
 import { FlexItem } from "./index";
 
 export default {
   title: "Core/FlexItem",
   component: "FlexItem",
-  argTypes: {
-    flex: { type: "number" },
-    justifyContent: {
-      control: "select",
-      options: [
-        "-moz-initial",
-        "inherit",
-        "initial",
-        "revert",
-        "revert-layer",
-        "unset",
-        "space-around",
-        "space-between",
-        "space-evenly",
-        "stretch",
-        "center",
-        "end",
-        "flex-end",
-        "flex-start",
-        "start",
-        "left",
-        "normal",
-        "right",
-      ],
-    },
-  },
 } as Meta<FlexItem>;
 
-export const Default: Story<FlexItem> = ({ flex, justifyContent }) => {
-  return html`
-    <flex-item .flex=${flex} .justifyContent=${justifyContent}>
-      <span>Item</span>
-    </flex-item>
-  `;
-};
-Default.args = {
-  justifyContent: "flex-start",
-};
-
-export const WithinFlexbox: Story<FlexItem> = ({ justifyContent }) => {
+export const Default: Story<FlexItem> = () => {
   return html`
     <flex-box>
-      <flex-item .flex=${1} .justifyContent=${justifyContent}>
+      <flex-item .flex=${1}>
         <span>item1</span>
       </flex-item>
-      <flex-item .flex=${2} .justifyContent=${justifyContent}>
+      <flex-item .flex=${2}>
         <span>item2</span>
       </flex-item>
-      <flex-item .flex=${3} .justifyContent=${justifyContent}>
+      <flex-item .flex=${3}>
         <span>item3</span>
       </flex-item>
     </flex-box>
   `;
+};
+
+export const Shrink: Story<FlexItem> = () => {
+  const style = {
+    border: "1px solid black",
+  };
+
+  return html` <flex-box>
+    <flex-item style=${styleMap(style)}>Item1</flex-item>
+    <flex-item .flex=${2} style=${styleMap(style)}>Item2</flex-item>
+    <flex-item .flex=${2} style=${styleMap(style)}>Item3</flex-item>
+  </flex-box>`;
 };
