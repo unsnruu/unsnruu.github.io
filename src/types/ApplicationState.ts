@@ -10,4 +10,5 @@ export interface ApplicationState {
   appName: Applications;
   content: ReturnType<typeof html>;
   isFocused: boolean;
+  isDragging: boolean;
 }

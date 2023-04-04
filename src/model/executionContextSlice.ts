@@ -32,13 +32,24 @@ export const executionContextSlice = createSlice({
     minimizeAppById: (state, action: PayloadAction<NanoId>) => {
       return state.map((app) => {
         if (app.id !== action.payload) return app;
-        return { ...app, minimize: true, maximize: false };
+        return { ...app, minimize: true, maximize: false, isFocused: false };
       });
     },
-    maximizeAppById: (state, action: PayloadAction<NanoId>) => {
+    togglieMaiximizeById: (state, action: PayloadAction<NanoId>) => {
       return state.map((app) => {
         if (app.id !== action.payload) return app;
-        return { ...app, maximize: true, minimize: false };
+        return { ...app, maximize: !app.maximize, minimize: false };
+      });
+    },
+    startDraggingById: (state, action: PayloadAction<NanoId>) => {
+      return state.map((app) => {
+        if (app.id !== action.payload) return app;
+        return { ...app, isDragging: true };
+      });
+    },
+    stopDraggingAll: (state) => {
+      return state.map((app) => {
+        return { ...app, isDragging: false };
       });
     },
   },
@@ -47,8 +58,10 @@ export const executionContextSlice = createSlice({
 export const {
   closeAppById,
   focusById,
-  maximizeAppById,
+  togglieMaiximizeById,
   minimizeAppById,
   openAppById,
+  startDraggingById,
+  stopDraggingAll,
 } = executionContextSlice.actions;
 export const executionContextReducer = executionContextSlice.reducer;

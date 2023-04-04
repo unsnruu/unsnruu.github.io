@@ -2,12 +2,11 @@ import { css } from "lit";
 
 export const basicStyle = css`
   :host {
-    width: 200px;
-    height: 200px;
     position: absolute;
     background-color: var(--main-gray);
     border: 2px outset gray;
     transition: all 0.2s linear;
+    resize: both;
   }
   #container {
     width: 100%;

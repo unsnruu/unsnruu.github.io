@@ -14,4 +14,5 @@ export const generateAppState = ({
   maximize: false,
   minimize: false,
   isFocused: false,
+  isDragging: false,
 });

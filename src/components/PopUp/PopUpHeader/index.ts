@@ -26,6 +26,10 @@ export class PopUpHeader extends LitElement {
       font-family: "Press Start 2P", cursive;
       color: white;
       padding: 0.5rem;
+      user-select: none;
+    }
+    :host(:active) {
+      cursor: grabbing;
     }
     #header {
       overflow: hidden;
