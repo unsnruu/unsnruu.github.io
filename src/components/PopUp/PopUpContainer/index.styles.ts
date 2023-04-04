@@ -4,9 +4,8 @@ export const basicStyle = css`
   :host {
     position: absolute;
     background-color: var(--main-gray);
-    border: 2px outset gray;
+    /* border: 2px outset gray; */
     transition: all 0.2s linear;
-    resize: both;
   }
   #container {
     width: 100%;
@@ -29,5 +28,45 @@ export const maximizeStyle = css`
     width: 100%;
     height: 100%;
     transition: all 0.2s linear;
+  }
+`;
+
+export const outlineStyle = css`
+  .outline {
+    position: absolute;
+  }
+  #top {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    cursor: ns-resize;
+  }
+  #right {
+    right: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: black;
+    cursor: ew-resize;
+  }
+  #bottom {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    cursor: ns-resize;
+  }
+  #left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: white;
+    cursor: ew-resize;
+    z-index: -1;
   }
 `;

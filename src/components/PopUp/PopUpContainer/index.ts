@@ -2,7 +2,13 @@ import { LitElement, html } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 
 import { baseStyle } from "@/components/core/Base/index.styles";
-import { basicStyle, minimizeStyle, maximizeStyle } from "./index.styles";
+import {
+  basicStyle,
+  minimizeStyle,
+  maximizeStyle,
+  outlineStyle,
+} from "./index.styles";
+import { styleMap } from "lit/directives/style-map.js";
 
 import { store } from "@/model/store";
 import { focusById, startDraggingById } from "@/model/executionContextSlice";
@@ -21,9 +27,18 @@ export class PopUp extends LitElement {
   @state() shiftX = 0;
   @state() shiftY = 0;
 
-  static styles = [baseStyle, basicStyle, minimizeStyle, maximizeStyle];
+  @state() width = 200;
+  @state() height = 200;
 
-  _mousedown(e: MouseEvent) {
+  static styles = [
+    baseStyle,
+    basicStyle,
+    minimizeStyle,
+    maximizeStyle,
+    outlineStyle,
+  ];
+
+  _mousedownHeader(e: MouseEvent) {
     if (!this.appId) return;
     store.dispatch(startDraggingById(this.appId));
 
@@ -54,11 +69,30 @@ export class PopUp extends LitElement {
     };
   }
 
+  _mouseDownOutline(e: MouseEvent) {
+    if (!(e.target instanceof Element)) return;
+    if (!e.target.matches(".outline")) return;
+
+    const resize = ({ clientX, clientY }: MouseEvent) => {
+      this.width = clientX;
+      this.height = clientY;
+    };
+    const mousemove = (e: MouseEvent) => {
+      resize(e);
+    };
+    resize(e);
+    document.addEventListener("mousemove", mousemove);
+    document.addEventListener("mouseup", () => {
+      document.removeEventListener("mousemove", mousemove);
+    });
+  }
+
   _focus(e: MouseEvent) {
     if (!this.appId) return;
     if (e.target instanceof Element && e.target.matches("pop-up-header")) {
       return;
     }
+
     store.dispatch(focusById(this.appId));
   }
 
@@ -69,24 +103,37 @@ export class PopUp extends LitElement {
           z-index: ${this.isFocused ? 99 : 0};
           left: ${this.posX}px;
           top: ${this.posY}px;
-          width: ${200}px;
-          height: ${200}px;
         }
       </style>
     `;
 
+    const containerStyle = {
+      width: this.width + "px",
+      height: this.height + "px",
+    };
+
     return html`
       ${hostStyle}
-      <div id="container" @click=${this._focus} @mousedown=${() => {}}>
+      <div
+        id="container"
+        style=${styleMap(containerStyle)}
+        @click=${this._focus}
+        @mousedown=${this._mouseDownOutline}
+      >
         <pop-up-header
           .header=${this.header}
           .appId=${this.appId}
-          @mousedown=${this._mousedown}
+          @mousedown=${this._mousedownHeader}
         >
         </pop-up-header>
         <pop-up-body @click=${this._focus}>
           <slot></slot>
         </pop-up-body>
+
+        <div id="top" class="outline"></div>
+        <div id="right" class="outline"></div>
+        <div id="bottom" class="outline"></div>
+        <div id="left" class="outline"></div>
       </div>
     `;
   }
@@ -101,4 +148,3 @@ declare global {
  * https://ko.javascript.info/mouse-drag-and-drop
  * 드래그 이벤트의 경우 위의 사이트를 이용하여 작성했습니다.
  */
-console.log(this);
