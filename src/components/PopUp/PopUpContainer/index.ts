@@ -15,6 +15,8 @@ import { focusById, startDraggingById } from "@/model/executionContextSlice";
 
 import type { NanoId } from "@/types/NanoId";
 
+//todo :  최소한의  width값과 height 값을 constant로 정해서 두기
+
 @customElement("pop-up")
 export class PopUp extends LitElement {
   @property() header = "";
@@ -22,13 +24,13 @@ export class PopUp extends LitElement {
   @property() isFocused: boolean = false;
   @property() isDragging: boolean = false;
 
-  @state() posX = 0;
-  @state() posY = 0;
+  @state() posX = Math.random() * 100 + 100;
+  @state() posY = Math.random() * 100 + 100;
   @state() shiftX = 0;
   @state() shiftY = 0;
 
-  @state() width = 200;
-  @state() height = 200;
+  @state() width = Math.random() * 300 + 200;
+  @state() height = Math.random() * 300 + 200;
 
   static styles = [
     baseStyle,
@@ -89,10 +91,6 @@ export class PopUp extends LitElement {
 
   _focus(e: MouseEvent) {
     if (!this.appId) return;
-    if (e.target instanceof Element && e.target.matches("pop-up-header")) {
-      return;
-    }
-
     store.dispatch(focusById(this.appId));
   }
 

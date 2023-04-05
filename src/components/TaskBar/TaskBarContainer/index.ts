@@ -7,16 +7,13 @@ import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import { store } from "@/model/store";
-import { focusById } from "@/model/executionContextSlice";
+import { focusById, openAppById } from "@/model/executionContextSlice";
 
 import type { ApplicationState } from "@/types/ApplicationState";
-import type { NanoId } from "@/types/NanoId";
-
-type TaskBarAppState = Pick<ApplicationState, "isFocused" | "appName" | "id">;
 
 @customElement("task-bar")
 export class TaskBar extends LitElement {
-  @property() apps: TaskBarAppState[] = [];
+  @property() apps: ApplicationState[] = [];
 
   static styles = css`
     :host {
@@ -32,18 +29,27 @@ export class TaskBar extends LitElement {
       z-index: 99;
     }
   `;
-  createFocusHandler(appId: NanoId) {
-    return () => store.dispatch(focusById(appId));
+  createClickHandler({ id, minimize }: ApplicationState) {
+    return () => {
+      if (minimize) {
+        store.dispatch(openAppById(id));
+      }
+      store.dispatch(focusById(id));
+    };
   }
   taskButtonsTemplate() {
     return this.apps.map(
-      ({ appName, isFocused, id }) => html`
-        <flex-item @click=${this.createFocusHandler(id)}>
-          <task-button .name=${appName} .isFocused=${isFocused}></task-button>
+      (app) => html`
+        <flex-item @click=${this.createClickHandler(app)}>
+          <task-button
+            .name=${app.appName}
+            .isFocused=${app.isFocused}
+          ></task-button>
         </flex-item>
       `
     );
   }
+
   render() {
     return html`
       <flex-box .justifyContent=${"flex-start"} .alignItems=${"flex-start"}>

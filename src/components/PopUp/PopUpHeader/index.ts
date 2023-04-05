@@ -7,7 +7,6 @@ import {
   minimizeAppById,
   closeAppById,
   togglieMaiximizeById,
-  focusById,
 } from "@/model/executionContextSlice";
 
 import type { NanoId } from "@/types/NanoId";
@@ -36,10 +35,6 @@ export class PopUpHeader extends LitElement {
     }
   `;
 
-  _focus() {
-    if (!this.appId) return;
-    store.dispatch(focusById(this.appId));
-  }
   _close() {
     if (!this.appId) return;
     store.dispatch(closeAppById(this.appId));
@@ -56,7 +51,7 @@ export class PopUpHeader extends LitElement {
   render() {
     return html`
       <flex-box>
-        <flex-item id="header" @click=${this._focus} .flex=${1}>
+        <flex-item id="header" .flex=${1}>
           <core-text .ellipsis=${true} .text=${this.header}></core-text>
         </flex-item>
         <flex-item .flex=${1}>

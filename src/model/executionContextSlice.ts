@@ -13,14 +13,16 @@ export const executionContextSlice = createSlice({
   reducers: {
     focusById: (state, action: PayloadAction<NanoId>) => {
       return state.map((app) => {
-        if (app.id !== action.payload) return { ...app, isFocused: false };
+        if (app.id !== action.payload || app.minimize) {
+          return { ...app, isFocused: false };
+        }
         return { ...app, isFocused: true };
       });
     },
     openAppById: (state, action: PayloadAction<NanoId>) => {
       return state.map((app) => {
         if (app.id !== action.payload) return app;
-        return { ...app, isOpen: true };
+        return initialState.filter((app) => app.id === action.payload)[0];
       });
     },
     closeAppById: (state, action: PayloadAction<NanoId>) => {
@@ -32,7 +34,7 @@ export const executionContextSlice = createSlice({
     minimizeAppById: (state, action: PayloadAction<NanoId>) => {
       return state.map((app) => {
         if (app.id !== action.payload) return app;
-        return { ...app, minimize: true, maximize: false, isFocused: false };
+        return { ...app, minimize: true, maximize: false };
       });
     },
     togglieMaiximizeById: (state, action: PayloadAction<NanoId>) => {
