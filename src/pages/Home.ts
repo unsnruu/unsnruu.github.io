@@ -30,7 +30,7 @@ export default class Home extends ReduxLitElement {
   popupTemplate() {
     const openApps = this.executionContext.filter((app) => app.isOpen);
     return openApps.map(
-      ({ appName, id, isFocused, minimize, maximize, isDragging }) =>
+      ({ appName, id, isFocused, minimize, maximize, isDragging, content }) =>
         html`
           <pop-up
             .header=${appName}
@@ -39,7 +39,9 @@ export default class Home extends ReduxLitElement {
             .isFocused=${isFocused}
             .isDragging=${isDragging}
             class=${classMap({ maximize, minimize })}
-          ></pop-up>
+          >
+            ${content}
+          </pop-up>
         `
     );
   }
