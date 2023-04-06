@@ -6,16 +6,23 @@
 import { LitElement, html, css } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
+import { store } from "@/model/store";
+import { focusById, openAppById } from "@/model/executionContextSlice";
+
+import { TASK_BAR_HEIGHT } from "@/constants/Style";
+import type { ApplicationState } from "@/types/ApplicationState";
+
 @customElement("task-bar")
 export class TaskBar extends LitElement {
-  @property() apps: string[] = [];
+  @property() apps: ApplicationState[] = [];
 
   static styles = css`
     :host {
+      box-sizing: border-box;
       position: absolute;
       bottom: 0px;
       width: 100vw;
-      height: 32px;
+      height: ${TASK_BAR_HEIGHT}px;
       background-color: var(--main-gray);
       border-top: 1px solid white;
       outline: 1px solid var(--main-gray);
@@ -24,14 +31,27 @@ export class TaskBar extends LitElement {
       z-index: 99;
     }
   `;
-
+  createClickHandler({ id, minimize }: ApplicationState) {
+    return () => {
+      if (minimize) {
+        store.dispatch(openAppById(id));
+      }
+      store.dispatch(focusById(id));
+    };
+  }
   taskButtonsTemplate() {
     return this.apps.map(
       (app) => html`
-        <flex-item><task-button .name=${app}></task-button></flex-item>
+        <flex-item @click=${this.createClickHandler(app)}>
+          <task-button
+            .name=${app.appName}
+            .isFocused=${app.isFocused}
+          ></task-button>
+        </flex-item>
       `
     );
   }
+
   render() {
     return html`
       <flex-box .justifyContent=${"flex-start"} .alignItems=${"flex-start"}>

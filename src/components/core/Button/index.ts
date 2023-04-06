@@ -1,14 +1,15 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { baseStyle } from "../Base/index.styles.js";
-import { styles } from "./index.styles";
+import { basicStyle, imgStyle } from "./index.styles";
 
 @customElement("core-button")
 export class Button extends LitElement {
   @property() src?: string;
   @property() text?: string;
+  @property() isFocused?: boolean;
 
-  static styles = [baseStyle, styles];
+  static styles = [baseStyle, basicStyle, imgStyle];
 
   TextTemplate() {
     if (!this.text) return html``;
@@ -20,9 +21,12 @@ export class Button extends LitElement {
   }
   ImgTemplate() {
     if (!this.src) return html``;
+
     return html`
-      <flex-item id="img-wrapper" .flex=${1}>
-        <img id="img" src=${this.src} />
+      <flex-item .flex=${1}>
+        <flex-box id="img-wrapper">
+          <img id="img" src=${this.src} draggable="false" />
+        </flex-box>
       </flex-item>
     `;
   }

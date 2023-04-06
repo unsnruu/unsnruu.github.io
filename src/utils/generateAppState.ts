@@ -13,4 +13,6 @@ export const generateAppState = ({
   isOpen: true,
   maximize: false,
   minimize: false,
+  isFocused: false,
+  isDragging: false,
 });

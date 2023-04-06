@@ -25,8 +25,12 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
+    "@types/redux-logger": "^3.0.9",
+    "@types/throttle-debounce": "^5.0.0",
     "csstype": "^3.1.1",
     "lit": "^2.6.1",
-    "nanoid": "^4.0.1"
+    "nanoid": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "throttle-debounce": "^5.0.0"
   }
 }
