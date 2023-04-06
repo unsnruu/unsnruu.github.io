@@ -25,7 +25,7 @@ export class Button extends LitElement {
     return html`
       <flex-item .flex=${1}>
         <flex-box id="img-wrapper">
-          <img id="img" src=${this.src} />
+          <img id="img" src=${this.src} draggable="false" />
         </flex-box>
       </flex-item>
     `;

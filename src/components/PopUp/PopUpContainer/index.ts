@@ -11,15 +11,19 @@ import {
 import { styleMap } from "lit/directives/style-map.js";
 
 import { store } from "@/model/store";
-import { focusById, startDraggingById } from "@/model/executionContextSlice";
+import {
+  focusById,
+  startDraggingById,
+  togglieMaiximizeById,
+} from "@/model/executionContextSlice";
 
+import { MIN_HEIGHT, MIN_WIDTH } from "@/constants/Style";
 import type { NanoId } from "@/types/NanoId";
-
-//todo :  최소한의  width값과 height 값을 constant로 정해서 두기
 
 @customElement("pop-up")
 export class PopUp extends LitElement {
   @property() header = "";
+  @property() maximize: boolean = false;
   @property() appId: NanoId | null = null;
   @property() isFocused: boolean = false;
   @property() isDragging: boolean = false;
@@ -28,9 +32,8 @@ export class PopUp extends LitElement {
   @state() posY = Math.random() * 100 + 100;
   @state() shiftX = 0;
   @state() shiftY = 0;
-
-  @state() width = Math.random() * 300 + 200;
-  @state() height = Math.random() * 300 + 200;
+  @state() width = Math.random() * 300 + MIN_WIDTH;
+  @state() height = Math.random() * 300 + MIN_HEIGHT;
 
   static styles = [
     baseStyle,
@@ -42,7 +45,10 @@ export class PopUp extends LitElement {
 
   _mousedownHeader(e: MouseEvent) {
     if (!this.appId) return;
+    if (this.maximize) return;
+
     store.dispatch(startDraggingById(this.appId));
+    store.dispatch(focusById(this.appId));
 
     let shiftX = e.clientX - this.getBoundingClientRect().left;
     let shiftY = e.clientY - this.getBoundingClientRect().top;
@@ -75,9 +81,12 @@ export class PopUp extends LitElement {
     if (!(e.target instanceof Element)) return;
     if (!e.target.matches(".outline")) return;
 
-    const resize = ({ clientX, clientY }: MouseEvent) => {
-      this.width = clientX;
-      this.height = clientY;
+    const resize = ({ pageX, pageY }: MouseEvent) => {
+      let newWidth = pageX - this.posX;
+      let newHeight = pageY - this.posY;
+
+      this.width = newWidth < MIN_WIDTH ? MIN_WIDTH : newWidth;
+      this.height = newHeight < MIN_HEIGHT ? MIN_HEIGHT : newHeight;
     };
     const mousemove = (e: MouseEvent) => {
       resize(e);
@@ -89,9 +98,13 @@ export class PopUp extends LitElement {
     });
   }
 
-  _focus(e: MouseEvent) {
+  _focus() {
     if (!this.appId) return;
     store.dispatch(focusById(this.appId));
+  }
+  _dbClick() {
+    if (!this.appId) return;
+    store.dispatch(togglieMaiximizeById(this.appId));
   }
 
   render() {
@@ -99,15 +112,15 @@ export class PopUp extends LitElement {
       <style>
         :host {
           z-index: ${this.isFocused ? 99 : 0};
-          left: ${this.posX}px;
-          top: ${this.posY}px;
+          left: ${this.maximize ? 0 : this.posX}px;
+          top: ${this.maximize ? 0 : this.posY}px;
         }
       </style>
     `;
 
     const containerStyle = {
-      width: this.width + "px",
-      height: this.height + "px",
+      width: this.maximize ? "100%" : this.width + "px",
+      height: this.maximize ? "100%" : this.height + "px",
     };
 
     return html`
@@ -122,6 +135,7 @@ export class PopUp extends LitElement {
           .header=${this.header}
           .appId=${this.appId}
           @mousedown=${this._mousedownHeader}
+          @dblclick=${this._dbClick}
         >
         </pop-up-header>
         <pop-up-body @click=${this._focus}>

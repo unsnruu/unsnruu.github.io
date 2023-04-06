@@ -9,6 +9,7 @@ import { customElement, property } from "lit/decorators.js";
 import { store } from "@/model/store";
 import { focusById, openAppById } from "@/model/executionContextSlice";
 
+import { TASK_BAR_HEIGHT } from "@/constants/Style";
 import type { ApplicationState } from "@/types/ApplicationState";
 
 @customElement("task-bar")
@@ -17,10 +18,11 @@ export class TaskBar extends LitElement {
 
   static styles = css`
     :host {
+      box-sizing: border-box;
       position: absolute;
       bottom: 0px;
       width: 100vw;
-      height: 32px;
+      height: ${TASK_BAR_HEIGHT}px;
       background-color: var(--main-gray);
       border-top: 1px solid white;
       outline: 1px solid var(--main-gray);

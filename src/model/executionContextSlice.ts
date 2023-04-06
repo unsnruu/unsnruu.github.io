@@ -19,6 +19,7 @@ export const executionContextSlice = createSlice({
         return { ...app, isFocused: true };
       });
     },
+    stopFocusing: (state) => state.map((app) => ({ ...app, isFocused: false })),
     openAppById: (state, action: PayloadAction<NanoId>) => {
       return state.map((app) => {
         if (app.id !== action.payload) return app;
@@ -65,5 +66,6 @@ export const {
   openAppById,
   startDraggingById,
   stopDraggingAll,
+  stopFocusing,
 } = executionContextSlice.actions;
 export const executionContextReducer = executionContextSlice.reducer;
