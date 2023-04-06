@@ -5,12 +5,17 @@ import { customElement } from "lit/decorators.js";
 export class PopUpBody extends LitElement {
   static styles = css`
     :host {
-      padding: 0.5rem;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    #container {
+      padding: 1rem;
     }
   `;
 
   render() {
-    return html`<slot></slot> `;
+    return html`<div id="container"><slot></slot></div> `;
   }
 }
 

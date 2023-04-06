@@ -6,6 +6,7 @@ export const basicStyle = css`
     position: absolute;
     background-color: var(--main-gray);
     transition: all 0.2s linear;
+    overflow: hidden;
   }
   #container {
     box-sizing: border-box;
