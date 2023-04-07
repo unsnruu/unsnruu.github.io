@@ -8,6 +8,7 @@ export class PopUpBody extends LitElement {
       width: 100%;
       height: 100%;
       overflow: hidden;
+      font-family: "리디바탕", "ridi-batang";
     }
     #container {
       padding: 1rem;
