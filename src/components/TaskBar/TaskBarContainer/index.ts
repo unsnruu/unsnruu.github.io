@@ -11,6 +11,7 @@ import { focusById, openAppById } from "@/model/executionContextSlice";
 
 import { TASK_BAR_HEIGHT } from "@/constants/Style";
 import type { ApplicationState } from "@/types/ApplicationState";
+import { openMenu } from "@/model/appMenuSlice";
 
 @customElement("task-bar")
 export class TaskBar extends LitElement {
@@ -51,12 +52,15 @@ export class TaskBar extends LitElement {
       `
     );
   }
+  _clickStartButton() {
+    store.dispatch(openMenu());
+  }
 
   render() {
     return html`
       <flex-box .justifyContent=${"flex-start"} .alignItems=${"flex-start"}>
         <flex-item>
-          <start-button></start-button>
+          <start-button @click=${this._clickStartButton}></start-button>
         </flex-item>
         <flex-item .flex=${1}>
           <flex-box .justifyContent=${"flex-start"}>
