@@ -1,7 +1,7 @@
 import ReduxLitElement from "@/types/ReduxLitElement";
 
 import { html, css } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { RootState, store } from "@/model/store";
 
@@ -14,7 +14,8 @@ import {
 @customElement("home-page")
 export default class Home extends ReduxLitElement {
   @state() executionContext: ExecutionContextState = [];
-  @state() isDragging: boolean = false;
+  @state() isDragging = false;
+  @state() isOpenMenu = false;
 
   static styles = css`
     #background {
@@ -25,6 +26,7 @@ export default class Home extends ReduxLitElement {
 
   _setState(reduxState: RootState) {
     this.executionContext = reduxState.executionContext;
+    this.isOpenMenu = reduxState.appMenu.isOpen;
   }
 
   popupTemplate() {
@@ -53,10 +55,19 @@ export default class Home extends ReduxLitElement {
     store.dispatch(stopDraggingAll());
   }
 
+  appMenuTemplate() {
+    if (this.isOpenMenu) {
+      return html` <app-menu></app-menu>`;
+    } else {
+      return;
+    }
+  }
+
   render() {
     return html`
       <div id="background" @click=${this._click}>
         <div>${this.popupTemplate()}</div>
+        ${this.appMenuTemplate()}
         <task-bar .apps=${this.executionContext}></task-bar>
       </div>
     `;
