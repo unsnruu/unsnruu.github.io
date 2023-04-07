@@ -57,6 +57,7 @@ export const outlineStyle = css`
     height: 2px;
     background-color: black;
     cursor: ns-resize;
+    z-index: 1;
   }
   #left {
     position: absolute;
@@ -66,6 +67,5 @@ export const outlineStyle = css`
     width: 2px;
     background-color: white;
     cursor: ew-resize;
-    z-index: -1;
   }
 `;
