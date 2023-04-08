@@ -28,12 +28,12 @@ export class PopUp extends LitElement {
   @property() isFocused = false;
   @property() isDragging = false;
 
-  @state() posX = Math.random() * 100 + 100;
-  @state() posY = Math.random() * 100 + 100;
+  @state() posX = Math.random() * 50;
+  @state() posY = Math.random() * 250;
   @state() shiftX = 0;
   @state() shiftY = 0;
-  @state() width = Math.random() * 300 + MIN_WIDTH;
-  @state() height = Math.random() * 300 + MIN_HEIGHT;
+  @state() width = Math.random() * 200 + MIN_WIDTH;
+  @state() height = Math.random() * 200 + MIN_HEIGHT;
 
   static styles = [
     baseStyle,
@@ -77,24 +77,23 @@ export class PopUp extends LitElement {
     };
   }
 
-  _mouseDownOutline(e: MouseEvent) {
+  _pointerDownOutlines(e: PointerEvent) {
     if (!(e.target instanceof Element)) return;
     if (!e.target.matches(".outline")) return;
 
-    const resize = ({ pageX, pageY }: MouseEvent) => {
+    const resize = ({ pageX, pageY }: PointerEvent) => {
       const newWidth = pageX - this.posX;
       const newHeight = pageY - this.posY;
-
       this.width = newWidth < MIN_WIDTH ? MIN_WIDTH : newWidth;
       this.height = newHeight < MIN_HEIGHT ? MIN_HEIGHT : newHeight;
     };
-    const mousemove = (e: MouseEvent) => {
+    const onPointerMove = (e: PointerEvent) => {
       resize(e);
     };
     resize(e);
-    document.addEventListener("mousemove", mousemove);
+    document.addEventListener("pointermove", onPointerMove);
     document.addEventListener("mouseup", () => {
-      document.removeEventListener("mousemove", mousemove);
+      document.removeEventListener("pointermove", onPointerMove);
     });
   }
 
@@ -129,7 +128,7 @@ export class PopUp extends LitElement {
         id="container"
         style=${styleMap(containerStyle)}
         @click=${this._focus}
-        @pointerdown=${this._mouseDownOutline}
+        @pointerdown=${this._pointerDownOutlines}
       >
         <pop-up-header
           .header=${this.header}
