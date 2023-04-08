@@ -41,16 +41,17 @@ export class TaskBar extends LitElement {
     };
   }
   taskButtonsTemplate() {
-    return this.apps.map(
-      (app) => html`
+    return this.apps.map((app) => {
+      if (!app.isOpen) return;
+      return html`
         <flex-item @click=${this.createClickHandler(app)}>
           <task-button
             .name=${app.appName}
             .isFocused=${app.isFocused}
           ></task-button>
         </flex-item>
-      `
-    );
+      `;
+    });
   }
   _clickStartButton() {
     store.dispatch(openMenu());
