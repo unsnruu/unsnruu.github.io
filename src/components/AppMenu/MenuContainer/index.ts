@@ -40,9 +40,6 @@ export class AppMenu extends ReduxLitElement {
   }
 
   render() {
-    if (!this.isOpen) console.log("isNotOpen");
-    if (this.isOpen) console.log("isOpen");
-
     return html` <div id="container">
       <app-menu-body>
         ${this.apps.map(

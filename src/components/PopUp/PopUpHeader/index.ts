@@ -13,7 +13,7 @@ import type { NanoId } from "@/types/NanoId";
 
 @customElement("pop-up-header")
 export class PopUpHeader extends LitElement {
-  @property() header: string = "";
+  @property() header = "";
   @property() appId: NanoId | null = null;
 
   static styles = css`
