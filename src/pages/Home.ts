@@ -10,6 +10,7 @@ import {
   stopDraggingAll,
   stopFocusing,
 } from "@/model/executionContextSlice";
+import { closeMenu } from "@/model/appMenuSlice";
 
 @customElement("home-page")
 export default class Home extends ReduxLitElement {
@@ -51,6 +52,7 @@ export default class Home extends ReduxLitElement {
   _click(e: MouseEvent) {
     if (e.target instanceof Element && e.target.matches("#background")) {
       store.dispatch(stopFocusing());
+      store.dispatch(closeMenu());
     }
     store.dispatch(stopDraggingAll());
   }
