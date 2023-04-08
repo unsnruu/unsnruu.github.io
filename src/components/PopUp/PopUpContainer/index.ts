@@ -23,10 +23,10 @@ import type { NanoId } from "@/types/NanoId";
 @customElement("pop-up")
 export class PopUp extends LitElement {
   @property() header = "";
-  @property() maximize: boolean = false;
+  @property() maximize = false;
   @property() appId: NanoId | null = null;
-  @property() isFocused: boolean = false;
-  @property() isDragging: boolean = false;
+  @property() isFocused = false;
+  @property() isDragging = false;
 
   @state() posX = Math.random() * 100 + 100;
   @state() posY = Math.random() * 100 + 100;
@@ -50,8 +50,8 @@ export class PopUp extends LitElement {
     store.dispatch(startDraggingById(this.appId));
     store.dispatch(focusById(this.appId));
 
-    let shiftX = e.clientX - this.getBoundingClientRect().left;
-    let shiftY = e.clientY - this.getBoundingClientRect().top;
+    const shiftX = e.clientX - this.getBoundingClientRect().left;
+    const shiftY = e.clientY - this.getBoundingClientRect().top;
 
     const moveAt = ({ pageX, pageY }: PointerEvent) => {
       let newX = pageX - shiftX;
@@ -64,7 +64,6 @@ export class PopUp extends LitElement {
       this.posY = newY;
     };
     const onPointerMove = (event: PointerEvent) => {
-      console.log(`it's moving`);
       if (!this.isDragging) return;
       moveAt(event);
     };
@@ -83,8 +82,8 @@ export class PopUp extends LitElement {
     if (!e.target.matches(".outline")) return;
 
     const resize = ({ pageX, pageY }: MouseEvent) => {
-      let newWidth = pageX - this.posX;
-      let newHeight = pageY - this.posY;
+      const newWidth = pageX - this.posX;
+      const newHeight = pageY - this.posY;
 
       this.width = newWidth < MIN_WIDTH ? MIN_WIDTH : newWidth;
       this.height = newHeight < MIN_HEIGHT ? MIN_HEIGHT : newHeight;
