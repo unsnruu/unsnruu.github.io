@@ -1,7 +1,7 @@
 import ReduxLitElement from "@/types/ReduxLitElement";
 
 import { html, css } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { customElement, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { RootState, store } from "@/model/store";
 
