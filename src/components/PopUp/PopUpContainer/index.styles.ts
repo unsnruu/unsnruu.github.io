@@ -7,6 +7,7 @@ export const basicStyle = css`
     background-color: var(--main-gray);
     transition: all 0.2s linear;
     overflow: hidden;
+    touch-action: none;
   }
   #container {
     box-sizing: border-box;

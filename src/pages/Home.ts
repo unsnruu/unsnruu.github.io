@@ -19,9 +19,15 @@ export default class Home extends ReduxLitElement {
   @state() isOpenMenu = false;
 
   static styles = css`
+    :host {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
     #background {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
   `;
 
