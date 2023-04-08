@@ -43,7 +43,7 @@ export class PopUp extends LitElement {
     outlineStyle,
   ];
 
-  _mousedownHeader(e: MouseEvent) {
+  _pointerDownHeader(e: MouseEvent) {
     if (!this.appId) return;
     if (this.maximize) return;
 
@@ -63,16 +63,16 @@ export class PopUp extends LitElement {
       this.posX = newX;
       this.posY = newY;
     };
-    const onMouseMove = (event: MouseEvent) => {
+    const onPointerMove = (event: MouseEvent) => {
       if (!this.isDragging) return;
       moveAt(event);
     };
 
     moveAt(e);
-    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("pointermove", onPointerMove);
 
     this.onmouseup = function () {
-      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("pointermove", onPointerMove);
       this.onmouseup = null;
     };
   }
@@ -129,12 +129,12 @@ export class PopUp extends LitElement {
         id="container"
         style=${styleMap(containerStyle)}
         @click=${this._focus}
-        @mousedown=${this._mouseDownOutline}
+        @pointerdown=${this._mouseDownOutline}
       >
         <pop-up-header
           .header=${this.header}
           .appId=${this.appId}
-          @mousedown=${this._mousedownHeader}
+          @mousedown=${this._pointerDownHeader}
           @dblclick=${this._dbClick}
         >
         </pop-up-header>
