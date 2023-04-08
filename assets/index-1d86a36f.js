@@ -444,8 +444,14 @@ const store = createStore(
         <task-bar .apps=${this.executionContext}></task-bar>
       </div>
     `}};De.styles=M`
+    :host {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
     #background {
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
   `;gt([te()],De.prototype,"executionContext",2);gt([te()],De.prototype,"isDragging",2);gt([te()],De.prototype,"isOpenMenu",2);De=gt([B("home-page")],De);
