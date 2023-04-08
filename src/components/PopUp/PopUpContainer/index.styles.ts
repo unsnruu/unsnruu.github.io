@@ -8,6 +8,8 @@ export const basicStyle = css`
     transition: all 0.2s linear;
     overflow: hidden;
     touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
   }
   #container {
     box-sizing: border-box;
