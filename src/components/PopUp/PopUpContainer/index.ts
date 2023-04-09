@@ -18,15 +18,17 @@ import {
 } from "@/model/executionContextSlice";
 
 import { MIN_HEIGHT, MIN_WIDTH } from "@/constants/Style";
-import type { NanoId } from "@/types/NanoId";
+// import type { NanoId } from "@/types/NanoId";
+import type { ApplicationState } from "@/types/ApplicationState";
 
 @customElement("pop-up")
 export class PopUp extends LitElement {
-  @property() header = "";
-  @property() maximize = false;
-  @property() appId: NanoId | null = null;
-  @property() isFocused = false;
-  @property() isDragging = false;
+  // @property() header = "";
+  // @property() maximize = false;
+  // @property() appId: NanoId | null = null;
+  // @property() isFocused = false;
+  // @property() isDragging = false;
+  @property() state: ApplicationState = {} as ApplicationState;
 
   @state() posX = Math.random() * 50;
   @state() posY = Math.random() * 250;
@@ -44,11 +46,10 @@ export class PopUp extends LitElement {
   ];
 
   _pointerDownHeader(e: PointerEvent) {
-    if (!this.appId) return;
-    if (this.maximize) return;
+    if (!this.state) return;
 
-    store.dispatch(startDraggingById(this.appId));
-    store.dispatch(focusById(this.appId));
+    store.dispatch(startDraggingById(this.state.id));
+    store.dispatch(focusById(this.state.id));
 
     const shiftX = e.clientX - this.getBoundingClientRect().left;
     const shiftY = e.clientY - this.getBoundingClientRect().top;
@@ -64,7 +65,7 @@ export class PopUp extends LitElement {
       this.posY = newY;
     };
     const onPointerMove = (event: PointerEvent) => {
-      if (!this.isDragging) return;
+      if (!this.state.isDragging) return;
       moveAt(event);
     };
 
@@ -98,28 +99,28 @@ export class PopUp extends LitElement {
   }
 
   _focus() {
-    if (!this.appId) return;
-    store.dispatch(focusById(this.appId));
+    store.dispatch(focusById(this.state.id));
   }
   _dbClick() {
-    if (!this.appId) return;
-    store.dispatch(togglieMaiximizeById(this.appId));
+    store.dispatch(togglieMaiximizeById(this.state.id));
   }
 
   render() {
+    console.log("appid", this.state.appName);
+    console.log("pos", this.posX, this.posY);
     const hostStyle = html`
       <style>
         :host {
-          z-index: ${this.isFocused ? 99 : 0};
-          left: ${this.maximize ? 0 : this.posX}px;
-          top: ${this.maximize ? 0 : this.posY}px;
+          z-index: ${this.state.isFocused ? 99 : 0};
+          left: ${this.state.maximize ? 0 : this.posX}px;
+          top: ${this.state.maximize ? 0 : this.posY}px;
         }
       </style>
     `;
 
     const containerStyle = {
-      width: this.maximize ? "100%" : this.width + "px",
-      height: this.maximize ? "100%" : this.height + "px",
+      width: this.state.maximize ? "100%" : this.width + "px",
+      height: this.state.maximize ? "100%" : this.height + "px",
     };
 
     return html`
@@ -131,8 +132,8 @@ export class PopUp extends LitElement {
         @pointerdown=${this._pointerDownOutlines}
       >
         <pop-up-header
-          .header=${this.header}
-          .appId=${this.appId}
+          .header=${this.state.appName}
+          .appId=${this.state.id}
           @pointerdown=${this._pointerDownHeader}
           @dblclick=${this._dbClick}
         >
