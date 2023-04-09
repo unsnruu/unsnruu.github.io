@@ -37,22 +37,15 @@ export default class Home extends ReduxLitElement {
   }
 
   popupTemplate() {
-    const openApps = this.executionContext.filter((app) => app.isOpen);
-    return openApps.map(
-      ({ appName, id, isFocused, minimize, maximize, isDragging, content }) =>
-        html`
-          <pop-up
-            .header=${appName}
-            .appId=${id}
-            .maximize=${maximize}
-            .isFocused=${isFocused}
-            .isDragging=${isDragging}
-            class=${classMap({ maximize, minimize })}
-          >
-            ${content}
-          </pop-up>
-        `
-    );
+    return this.executionContext.map((app) => {
+      const { isOpen, maximize, minimize, content } = app;
+      if (!isOpen) return;
+      return html`
+        <pop-up .state=${app} class=${classMap({ maximize, minimize })}>
+          ${content}
+        </pop-up>
+      `;
+    });
   }
 
   _click(e: MouseEvent) {
