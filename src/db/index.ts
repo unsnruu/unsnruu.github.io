@@ -33,6 +33,20 @@ const reportContent = html` <div>
     >깃허브 이슈로 바로가기</a
   >
 </div>`;
+const JJANContent = html`
+  <div>
+    <flex-box .flex=${1}>
+      <core-text .text=${"JJAN 프로젝트"}></core-text>
+    </flex-box>
+    <core-text .text=${"현재 작업 중인 프로젝트입니다."}></core-text>
+    <div>
+      <img src="/img-jjan-logo.png" />
+    </div>
+    <a href="https://github.com/numble-jjan/jjan-front-renewal"
+      >JJAN 깃허브로 바로가기</a
+    >
+  </div>
+`;
 
 export default {
   introduction: generateAppState({
@@ -44,4 +58,5 @@ export default {
     content: techStackContent,
   }),
   report: generateAppState({ appName: "report", content: reportContent }),
+  JJAN: generateAppState({ appName: "JJAN", content: JJANContent }),
 } as Db;

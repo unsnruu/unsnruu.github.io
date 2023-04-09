@@ -1,1 +1,1 @@
-export type Applications = "introduction" | "techStack" | "report";
+export type Applications = "introduction" | "techStack" | "report" | "JJAN";
