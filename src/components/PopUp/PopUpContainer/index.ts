@@ -18,16 +18,10 @@ import {
 } from "@/model/executionContextSlice";
 
 import { MIN_HEIGHT, MIN_WIDTH } from "@/constants/Style";
-// import type { NanoId } from "@/types/NanoId";
 import type { ApplicationState } from "@/types/ApplicationState";
 
 @customElement("pop-up")
 export class PopUp extends LitElement {
-  // @property() header = "";
-  // @property() maximize = false;
-  // @property() appId: NanoId | null = null;
-  // @property() isFocused = false;
-  // @property() isDragging = false;
   @property() state: ApplicationState = {} as ApplicationState;
 
   @state() posX = Math.random() * 50;
