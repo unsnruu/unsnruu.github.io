@@ -8,6 +8,7 @@ export class FlexBox extends LitElement {
   @property() gap?: number;
   @property() justifyContent?: Property.JustifyContent;
   @property() alignItems?: Property.AlignItems;
+  @property() direction?: Property.FlexDirection;
 
   static styles = [
     baseStyle,
@@ -28,6 +29,7 @@ export class FlexBox extends LitElement {
           gap: ${this.gap || 0}px;
           justify-content: ${this.justifyContent || "center"};
           align-items: ${this.alignItems || "center"};
+          flex-direction: ${this.direction || "row"};
         }
       </style>
     `;
