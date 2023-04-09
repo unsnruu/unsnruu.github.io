@@ -106,8 +106,6 @@ export class PopUp extends LitElement {
   }
 
   render() {
-    console.log("appid", this.state.appName);
-    console.log("pos", this.posX, this.posY);
     const hostStyle = html`
       <style>
         :host {
